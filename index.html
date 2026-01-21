@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumer Portal - Phase 2 Mockups</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #00b4a6 0%, #008B7D 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        .content {
+            padding: 40px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-size: 1.8em;
+            color: #24292e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #00b4a6;
+        }
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .mockup-card {
+            background: #f8f9fa;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .mockup-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,180,166,0.2);
+            border-color: #00b4a6;
+        }
+        .mockup-card h3 {
+            color: #00b4a6;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .mockup-card .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .status-scheduled {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        .status-onway {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        .status-almost {
+            background: #fce4ec;
+            color: #c2185b;
+        }
+        .status-delivered {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+        .mockup-card p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-top: 8px;
+        }
+        .link-box {
+            background: #f0f9ff;
+            border-left: 4px solid #00b4a6;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        .link-box code {
+            background: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            color: #00b4a6;
+            word-break: break-all;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            color: #6b7280;
+            border-top: 1px solid #e5e7eb;
+        }
+        .icon {
+            font-size: 1.5em;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            .mockup-grid {
+                grid-template-columns: 1fr;
+            }
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Consumer Portal - Phase 2</h1>
+            <p>Mockups HTML pour le portail consommateur</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">📱 Mockups de Statut de Livraison</h2>
+                <div class="mockup-grid">
+                    <a href="mockup-scheduled.html" class="mockup-card">
+                        <h3>
+                            <span class="icon">📦</span>
+                            Mockup Scheduled
+                        </h3>
+                        <p>Statut : Planifié - La commande est prise en charge et la livraison est en cours de planification.</p>
+                        <span class="status-badge status-scheduled">Planifié</span>
+                    </a>
+
+                    <a href="mockup-on-the-way.html" class="mockup-card">
+                        <h3>
+                            <span class="icon">🚚</span>
+                            Mockup On the Way
+                        </h3>
+                        <p>Statut : En chemin - Le livreur est en route vers l'adresse de livraison.</p>
+                        <span class="status-badge status-onway">En chemin</span>
+                    </a>
+
+                    <a href="mockup-almost-there.html" class="mockup-card">
+                        <h3>
+                            <span class="icon">📍</span>
+                            Mockup Almost There
+                        </h3>
+                        <p>Statut : Presque arrivé - Le livreur est presque à destination, préparez-vous !</p>
+                        <span class="status-badge status-almost">Presque arrivé</span>
+                    </a>
+
+                    <a href="mockup-almost-there-v2.html" class="mockup-card">
+                        <h3>
+                            <span class="icon">⚡</span>
+                            Mockup Almost There V2
+                        </h3>
+                        <p>Statut : Presque arrivé (Version 2) - Version avec ajout rapide d'instructions de livraison.</p>
+                        <span class="status-badge status-almost">Presque arrivé V2</span>
+                    </a>
+
+                    <a href="mockup-delivered.html" class="mockup-card">
+                        <h3>
+                            <span class="icon">✅</span>
+                            Mockup Delivered
+                        </h3>
+                        <p>Statut : Livré - La livraison a été effectuée avec succès.</p>
+                        <span class="status-badge status-delivered">Livré</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="link-box">
+                <strong>🔗 Partagez cette page :</strong><br>
+                <code>https://melanieboisrodriguez-ctrl.github.io/Consumer-Portal/</code>
+                <br><br>
+                <small>Ou partagez directement un mockup en ajoutant le nom du fichier à la fin de l'URL (ex: <code>/mockup-scheduled.html</code>)</small>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Consumer Portal Phase 2 - Mockups HTML</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                <a href="https://github.com/melanieboisrodriguez-ctrl/Consumer-Portal" 
+                   style="color: #00b4a6; text-decoration: none;" 
+                   target="_blank">
+                    Voir sur GitHub
+                </a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
