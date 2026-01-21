@@ -1,0 +1,2028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail Consommateur - Unified Mockup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #1a1a1a;
+            line-height: 1.5;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .header {
+            background-color: white;
+            padding: 10px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        @media (min-width: 375px) {
+            .header {
+                padding: 12px 16px;
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            color: #00b4a6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .header-separator {
+            width: 1px;
+            height: 20px;
+            background-color: #e0e0e0;
+            margin: 0 12px;
+        }
+
+        .lang-selector {
+            color: #1a1a1a;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+            padding: 0 8px;
+            letter-spacing: 0.01em;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #4b5563;
+            cursor: pointer;
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .icon-btn:hover {
+            color: #1a1a1a;
+        }
+
+        /* Status Selector */
+        .status-selector {
+            background-color: white;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 57px;
+            z-index: 99;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .status-selector select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #00b4a6;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            background-color: white;
+            color: #1a1a1a;
+            cursor: pointer;
+        }
+
+        .status-selector select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 180, 166, 0.1);
+        }
+
+        .container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 12px;
+        }
+
+        @media (min-width: 375px) {
+            .container {
+                padding: 16px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .container {
+                max-width: 414px;
+                margin: 0 auto;
+            }
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 375px) {
+            .title {
+                font-size: 22px;
+                margin-bottom: 18px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        @media (min-width: 375px) {
+            .card {
+                padding: 18px;
+                margin-bottom: 14px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .card {
+                padding: 20px;
+                margin-bottom: 16px;
+            }
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            width: 20px;
+            height: 20px;
+            color: #00b4a6;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            color: #00b4a6;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: -0.01em;
+        }
+
+        .tracking-number-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .tracking-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #00b4a6;
+        }
+
+        .tracking-value {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-top: 4px;
+            letter-spacing: -0.01em;
+        }
+
+        .delivery-time {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .delivery-time svg {
+            width: 24px;
+            height: 24px;
+            color: #00b4a6;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .delivery-info {
+            flex: 1;
+        }
+
+        .delivery-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #00b4a6;
+            margin-bottom: 6px;
+        }
+
+        .delivery-date {
+            font-size: 15px;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 6px;
+            letter-spacing: -0.01em;
+        }
+
+        .delivery-hour {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .delivery-hour-range {
+            font-size: 14px;
+            font-weight: 500;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .progress-bar-wrapper {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar-card {
+            padding: 12px 16px;
+        }
+
+        @media (min-width: 375px) {
+            .progress-bar-card {
+                padding: 14px 18px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .progress-bar-card {
+                padding: 15px 20px;
+            }
+        }
+
+        .progress-step-label {
+            margin-top: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            color: #374151;
+            max-width: 80px;
+            letter-spacing: -0.01em;
+        }
+
+        .progress-bar-bg {
+            position: absolute;
+            top: 16px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e5e7eb;
+            border-radius: 1px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: #00b4a6;
+            border-radius: 1px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-step-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #00b4a6;
+            color: white;
+            border: 2px solid #00b4a6;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.completed .progress-step-icon {
+            background: #00b4a6;
+            animation: icon-complete 0.5s ease;
+        }
+
+        .progress-step.active .progress-step-icon {
+            background: #00b4a6;
+            animation: icon-pulse 2s ease-in-out infinite;
+        }
+
+        .progress-step.pending .progress-step-icon {
+            background: white;
+            color: #9ca3af;
+            border-color: #e5e7eb;
+        }
+
+        .progress-step.active.orange .progress-step-icon {
+            background: #f59e0b;
+            border-color: #f59e0b;
+            animation: icon-excited 0.8s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+        }
+
+        @keyframes icon-complete {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes icon-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes icon-excited {
+            0%, 100% { 
+                transform: rotate(0deg) scale(1);
+            }
+            25% { 
+                transform: rotate(-15deg) scale(1.15);
+            }
+            50% { 
+                transform: rotate(0deg) scale(1.2);
+            }
+            75% { 
+                transform: rotate(15deg) scale(1.15);
+            }
+        }
+
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 16px;
+            width: 56px;
+            height: 56px;
+            background: #00b4a6;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 180, 166, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 1000;
+            touch-action: manipulation;
+        }
+
+        @media (min-width: 375px) {
+            .chat-button {
+                bottom: 24px;
+                right: 20px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .chat-button {
+                bottom: 24px;
+                right: 24px;
+            }
+        }
+
+        .chat-button:hover {
+            background: #009688;
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 180, 166, 0.4), 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-button:active {
+            transform: scale(0.95);
+        }
+
+        .chat-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .confidence-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+
+        .confidence-high {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .confidence-medium {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .address-text {
+            color: #1a1a1a;
+            font-size: 14px;
+            margin-top: 8px;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+        }
+
+        .address-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .badge-residential {
+            background-color: #e0f7f5;
+            color: #00b4a6;
+        }
+
+        .badge-business {
+            background-color: #e3f2fd;
+            color: #2196f3;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #00b4a6;
+            border: 2px solid #00b4a6;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .btn-secondary:hover {
+            background-color: #00b4a6;
+            color: white;
+        }
+
+        .btn-primary {
+            width: 100%;
+            background-color: #00b4a6;
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #009688;
+        }
+
+        /* Animated Status Banner */
+        .animated-status {
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        @media (min-width: 375px) {
+            .animated-status {
+                padding: 18px;
+                margin-bottom: 18px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .animated-status {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .animated-status::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer-sweep 3s infinite;
+        }
+
+        @keyframes shimmer-sweep {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .status-animation {
+            font-size: 36px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .status-text {
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.01em;
+        }
+
+        /* Status-specific styles */
+        .animated-status.scheduled {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+            animation: message-glow 2s ease-in-out infinite;
+        }
+
+        .animated-status.en-route {
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+            box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+            animation: message-glow 2s ease-in-out infinite;
+        }
+
+        .animated-status.almost-there {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+            animation: super-excited-pulse 1.5s ease-in-out infinite;
+        }
+
+        .animated-status.delivered {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            box-shadow: 0 2px 8px rgba(5, 150, 105, 0.25);
+            animation: celebration-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes message-glow {
+            0%, 100% { 
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 8px 15px rgba(13, 148, 136, 0.3);
+                transform: scale(1.01);
+            }
+        }
+
+        @keyframes super-excited-pulse {
+            0%, 100% { 
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 12px 25px rgba(245, 158, 11, 0.5);
+                transform: scale(1.03);
+            }
+        }
+
+        @keyframes celebration-glow {
+            0%, 100% { 
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 10px 20px rgba(5, 150, 105, 0.4);
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes emoji-bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(5deg); }
+        }
+
+        @keyframes emoji-super-bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-8px) rotate(-10deg) scale(1.1); }
+            50% { transform: translateY(-10px) rotate(0deg) scale(1.2); }
+            75% { transform: translateY(-8px) rotate(10deg) scale(1.1); }
+        }
+
+        .status-animation.animated {
+            animation: emoji-bounce 2s ease-in-out infinite;
+        }
+
+        .status-animation.super-animated {
+            animation: emoji-super-bounce 1s ease-in-out infinite;
+        }
+
+        /* Map styles */
+        .map-container {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 15px, rgba(0,0,0,0.03) 15px, rgba(0,0,0,0.03) 16px),
+                repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(0,0,0,0.03) 15px, rgba(0,0,0,0.03) 16px);
+            border-radius: 8px;
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #d4edda;
+        }
+
+        .map-container-small {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 12px, rgba(0,0,0,0.03) 12px, rgba(0,0,0,0.03) 13px),
+                repeating-linear-gradient(90deg, transparent, transparent 12px, rgba(0,0,0,0.03) 12px, rgba(0,0,0,0.03) 13px);
+            border-radius: 8px;
+            margin-top: 12px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #d4edda;
+        }
+
+        .map-pin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            width: 40px;
+            height: 50px;
+            z-index: 10;
+            cursor: move;
+            transition: transform 0.2s ease;
+        }
+
+        .map-pin:active {
+            transform: translate(-50%, -100%) scale(1.1);
+        }
+
+        .map-pin-small {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            width: 30px;
+            height: 38px;
+            z-index: 10;
+        }
+
+        .map-pin-icon {
+            width: 40px;
+            height: 50px;
+            background-color: #00b4a6;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            border: 3px solid white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .map-pin-icon-small {
+            width: 30px;
+            height: 38px;
+            background-color: #00b4a6;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            border: 2px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .map-pin-icon::after,
+        .map-pin-icon-small::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background-color: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .map-pin-icon-small::after {
+            width: 10px;
+            height: 10px;
+        }
+
+        /* Instructions display */
+        .instructions-display {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .instructions-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .instructions-item:last-child {
+            border-bottom: none;
+        }
+
+        .instructions-label {
+            color: #999;
+            font-size: 13px;
+        }
+
+        .instructions-value {
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .masked-value {
+            color: #999;
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            background-color: white;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #00b4a6;
+        }
+
+        .urgent-banner {
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .urgent-text {
+            color: #c62828;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #00b4a6;
+        }
+
+        .checkbox-label {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #00b4a6;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #00b4a6;
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .refresh-btn {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #666;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .refresh-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        .pod-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .pod-placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .comparison-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .comparison-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-label {
+            color: #999;
+            font-size: 13px;
+        }
+
+        .comparison-value {
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .accuracy-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+
+        .accuracy-high {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        /* Status-specific content visibility */
+        .status-content {
+            display: none;
+        }
+
+        .status-content.active {
+            display: block;
+        }
+
+        /* Location confirmation styles */
+        .location-confirmation {
+            margin-top: 15px;
+        }
+
+        .location-status {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .location-status.unconfirmed {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+        }
+
+        .location-status.confirmed {
+            background: #d1fae5;
+            border: 1px solid #00b4a6;
+            color: #065f46;
+        }
+
+        .location-status-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .confirm-location-btn {
+            width: 100%;
+            padding: 14px 20px;
+            background: #00b4a6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 180, 166, 0.2);
+        }
+
+        .confirm-location-btn:hover {
+            background: #009688;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 180, 166, 0.3);
+        }
+
+        .confirm-location-btn:active {
+            transform: translateY(0);
+        }
+
+        .confirm-location-btn.confirmed {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .confirm-location-btn.confirmed:hover {
+            transform: none;
+            background: #6c757d;
+        }
+
+        .map-radius-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            border: 2px dashed rgba(0, 180, 166, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .map-info {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            color: #666;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .info-icon {
+            width: 16px;
+            height: 16px;
+            background-color: #999;
+            border-radius: 50%;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            margin-left: 8px;
+            cursor: help;
+            font-weight: 600;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .radio-option:hover {
+            border-color: #00b4a6;
+            background-color: #f0fdfc;
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 12px;
+            accent-color: #00b4a6;
+        }
+
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .toggle-label {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 26px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #00b4a6;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        .btn-icon {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg fill="currentColor" viewBox="0 0 20 20" style="width: 24px; height: 24px;">
+                    <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="header-right">
+            <span class="lang-selector">FR</span>
+            <div class="header-separator"></div>
+            <button class="icon-btn">🔍</button>
+            <div class="header-separator"></div>
+            <button class="icon-btn">🔔</button>
+            <div class="header-separator"></div>
+            <button class="icon-btn">☰</button>
+        </div>
+    </div>
+
+    <!-- Status Selector -->
+    <div class="status-selector">
+        <select id="statusSelect">
+            <option value="scheduled">📦 Planifiée</option>
+            <option value="en-route">🚚 En route</option>
+            <option value="almost-there">⚡ Presque arrivé</option>
+            <option value="delivered">🎉 Livré</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <!-- SCHEDULED STATUS -->
+        <div id="status-scheduled" class="status-content">
+            <div class="animated-status scheduled">
+                <div class="status-animation animated">📦</div>
+                <div class="status-text">
+                    <div style="line-height: 1.2;">Ta commande est avec nous !</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.9); font-weight: 400; margin-top: 6px;">On planifie la livraison, on s'en occupe !</div>
+                </div>
+            </div>
+
+            <div class="card progress-bar-card">
+                <div class="progress-bar-wrapper">
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 25%;"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="progress-step active">
+                            <div class="progress-step-icon">📦</div>
+                            <div class="progress-step-label">Planifiée</div>
+                        </div>
+                        <div class="progress-step pending">
+                            <div class="progress-step-icon">🚚</div>
+                            <div class="progress-step-label">En route</div>
+                        </div>
+                        <div class="progress-step pending">
+                            <div class="progress-step-icon">⚡</div>
+                            <div class="progress-step-label">Arrive bientôt</div>
+                        </div>
+                        <div class="progress-step pending">
+                            <div class="progress-step-icon">🎉</div>
+                            <div class="progress-step-label">Livrée</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="padding: 12px 16px;">
+                <div class="delivery-time">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div class="delivery-info">
+                        <div class="delivery-label">Date de livraison</div>
+                        <div class="delivery-date">17 mars 2024</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="padding: 12px 16px;">
+                <div class="tracking-number-section">
+                    <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20" style="width: 16px; height: 16px;">
+                        <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
+                    </svg>
+                    <div style="flex: 1;">
+                        <div class="tracking-label">N° de suivi</div>
+                        <div class="tracking-value">TESTINSTR202406</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Address Location Confirmation Section -->
+            <h2 class="title" style="margin-top: 30px; margin-bottom: 15px;">Confirmer l'emplacement</h2>
+
+            <!-- Delivery Address Confirmation Card -->
+            <div class="card">
+                <div class="card-header">
+                    <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2C6.48 2 3.5 4.98 3.5 8.5c0 4.78 5.36 9.21 6.5 10.5 1.14-1.29 6.5-5.72 6.5-10.5C16.5 4.98 13.52 2 10 2zm0 11.5c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                    </svg>
+                    <span class="card-title">Adresse de livraison</span>
+                    <span class="info-icon" title="Cliquez pour modifier l'adresse via le CEC">i</span>
+                </div>
+                <div class="address-text" style="font-size: 14px; line-height: 1.6; color: #1a1a1a; margin-top: 8px;">
+                    123 Main Street. Apt 202<br>
+                    Montréal, QC, H2W 3R6
+                </div>
+                
+                <!-- Interactive Map -->
+                <div class="map-container">
+                    <div class="map-radius-circle"></div>
+                    <div class="map-pin" id="draggablePinScheduled">
+                        <div class="map-pin-icon"></div>
+                    </div>
+                    <div class="map-info">
+                        <strong>📍 Emplacement actuel:</strong> 123 Main Street, Apt 202<br>
+                        <span style="font-size: 10px; color: #999;">Glissez l'épingle pour ajuster (rayon de 100m)</span>
+                    </div>
+                </div>
+
+                <!-- Location Confirmation -->
+                <div class="location-confirmation">
+                    <div class="location-status unconfirmed" id="locationStatusScheduled">
+                        <span class="location-status-icon">⚠️</span>
+                        <span><strong>Attention:</strong> Veuillez vérifier que l'emplacement sur la carte correspond à votre adresse de livraison. Ajustez l'épingle si nécessaire, puis confirmez.</span>
+                    </div>
+                    <button class="confirm-location-btn" id="confirmLocationBtnScheduled">Confirmer l'emplacement</button>
+                </div>
+
+                <!-- Address Type Selector -->
+                <div class="form-group" style="margin-top: 20px;">
+                    <label class="form-label">Type d'adresse</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="addressTypeScheduled" value="residential" checked>
+                            <span>Résidentiel</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="addressTypeScheduled" value="business">
+                            <span>Commercial</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Set Your Preferences Section -->
+            <h2 class="title" style="margin-top: 30px; margin-bottom: 15px;">Définir vos préférences</h2>
+
+            <!-- Delivery Instructions Card -->
+            <div class="card">
+                <div class="card-header">
+                    <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10z"/>
+                    </svg>
+                    <span class="card-title">Instructions de livraison</span>
+                </div>
+
+                <!-- Safe Drop Options -->
+                <div class="form-group">
+                    <label class="form-label">Emplacement de dépôt sécurisé</label>
+                    <select class="form-input" name="safeDrop">
+                        <option value="">Sélectionnez un emplacement</option>
+                        <option value="front">Porte d'entrée</option>
+                        <option value="back">Porte arrière</option>
+                        <option value="side">Entrée latérale</option>
+                        <option value="garage">Garage</option>
+                        <option value="other">Autre</option>
+                    </select>
+                </div>
+
+                <!-- Access Code -->
+                <div class="form-group">
+                    <label class="form-label">Code d'entrée</label>
+                    <input type="text" class="form-input" placeholder="Entrez le code d'entrée">
+                </div>
+
+                <!-- Buzzer Code -->
+                <div class="form-group">
+                    <label class="form-label">Code d'interphone</label>
+                    <input type="text" class="form-input" placeholder="Entrez le code d'interphone">
+                </div>
+
+                <!-- Special Instructions -->
+                <div class="form-group">
+                    <label class="form-label">Instructions spéciales</label>
+                    <textarea class="form-input" rows="3" placeholder="Ajoutez des instructions de livraison supplémentaires..."></textarea>
+                </div>
+
+                <!-- Business Hours (conditional) -->
+                <div class="form-group" id="businessHoursScheduled" style="display: none;">
+                    <label class="form-label">Heures d'ouverture</label>
+                    <input type="text" class="form-input" placeholder="ex. : Lun-Ven 9h-17h">
+                    <div style="margin-top: 10px;">
+                        <label class="radio-option">
+                            <input type="checkbox" name="weekendClosedScheduled">
+                            <span>Fermé le week-end</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Save for Future Toggle -->
+                <div class="toggle-group">
+                    <span class="toggle-label">Enregistrer les instructions pour les livraisons futures</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button class="btn-primary">
+                <div class="btn-icon">i</div>
+                Confirmer les instructions
+            </button>
+        </div>
+
+        <!-- EN ROUTE STATUS -->
+        <div id="status-en-route" class="status-content">
+            <div class="animated-status en-route">
+                <div class="status-animation animated">🚚</div>
+                <div class="status-text">
+                    <div style="line-height: 1.2;">Elle est en route !</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.9); font-weight: 400; margin-top: 6px;">En chemin vers toi, reste connecté !</div>
+                </div>
+            </div>
+
+            <div class="card progress-bar-card">
+                <div class="progress-bar-wrapper">
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 50%;"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="progress-step completed">
+                            <div class="progress-step-icon">✓</div>
+                            <div class="progress-step-label">Planifiée</div>
+                        </div>
+                        <div class="progress-step active">
+                            <div class="progress-step-icon">🚚</div>
+                            <div class="progress-step-label">En route</div>
+                        </div>
+                        <div class="progress-step pending">
+                            <div class="progress-step-icon">⚡</div>
+                            <div class="progress-step-label">Arrive bientôt</div>
+                        </div>
+                        <div class="progress-step pending">
+                            <div class="progress-step-icon">🎉</div>
+                            <div class="progress-step-label">Livrée</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="padding: 12px 16px;">
+                <div class="delivery-time">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div class="delivery-info">
+                        <div class="delivery-label">Heure de livraison</div>
+                        <div class="delivery-date">17 mars 2024</div>
+                        <div class="delivery-hour">11h27 - 15h27</div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+                            <span class="confidence-badge confidence-medium">Confiance moyenne</span>
+                            <span class="live-indicator">
+                                <span class="live-dot"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <button class="refresh-btn">
+                    🔄 Actualiser le suivi
+                </button>
+            </div>
+
+            <div class="card" style="padding: 12px 16px;">
+                <div class="tracking-number-section">
+                    <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20" style="width: 16px; height: 16px;">
+                        <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
+                    </svg>
+                    <div style="flex: 1;">
+                        <div class="tracking-label">N° de suivi</div>
+                        <div class="tracking-value">TESTINSTR202406</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2C6.48 2 3.5 4.98 3.5 8.5c0 4.78 5.36 9.21 6.5 10.5 1.14-1.29 6.5-5.72 6.5-10.5C16.5 4.98 13.52 2 10 2zm0 11.5c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                    </svg>
+                    <span class="card-title">Adresse de livraison</span>
+                </div>
+                <div class="address-text">
+                    123 Main Street. Apt 202<br>
+                    Montréal, QC, H2W 3R6
+                </div>
+                <span class="address-badge badge-residential">Résidentiel</span>
+                
+                <div class="map-container-small">
+                    <div class="map-pin-small">
+                        <div class="map-pin-icon-small"></div>
+                    </div>
+                </div>
+                
+                <button class="btn-secondary" style="margin-top: 12px;">Modifier l'emplacement rapidement</button>
+            </div>
+
+            <!-- Delivery Instructions Card -->
+            <div class="card">
+                <div class="card-header">
+                    <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10z"/>
+                    </svg>
+                    <span class="card-title">Instructions de livraison</span>
+                </div>
+
+                <div style="background-color: #fff3cd; padding: 12px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #ffc107;">
+                    <span style="color: #856404; font-size: 13px;">💡 Rappel : Vous pouvez toujours modifier vos instructions de livraison</span>
+                </div>
+
+                <!-- Current Instructions Display -->
+                <div class="instructions-display">
+                    <div class="instructions-item">
+                        <span class="instructions-label">Type d'adresse</span>
+                        <span class="instructions-value">Résidentiel</span>
+                    </div>
+                    <div class="instructions-item">
+                        <span class="instructions-label">Emplacement de dépôt</span>
+                        <span class="instructions-value">Porte d'entrée</span>
+                    </div>
+                    <div class="instructions-item">
+                        <span class="instructions-label">Code d'entrée</span>
+                        <span class="instructions-value">1234</span>
+                    </div>
+                    <div class="instructions-item">
+                        <span class="instructions-label">Code d'interphone</span>
+                        <span class="instructions-value">202</span>
+                    </div>
+                    <div class="instructions-item">
+                        <span class="instructions-label">Instructions spéciales</span>
+                        <span class="instructions-value">Laisser à la porte si pas de réponse</span>
+                    </div>
+                </div>
+
+                <button class="btn-secondary" style="width: 100%; margin-top: 15px;">
+                    ✏️ Modifier les instructions
+                </button>
+            </div>
+
+            <!-- Save for Later Button -->
+            <button class="btn-primary">
+                <div class="btn-icon">💾</div>
+                Enregistrer les instructions pour les livraisons futures
+            </button>
+        </div>
+
+        <!-- ALMOST THERE STATUS -->
+        <div id="status-almost-there" class="status-content active">
+            <div class="animated-status almost-there">
+                <div class="status-animation super-animated">⚡</div>
+                <div class="status-text">
+                    <div style="line-height: 1.2;">Ta commande arrive bientôt !</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.9); font-weight: 400; margin-top: 6px;">Presque là, prépare-toi !</div>
+                </div>
+            </div>
+
+            <div class="card progress-bar-card">
+                <div class="progress-bar-wrapper">
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 75%;"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="progress-step completed">
+                            <div class="progress-step-icon">✓</div>
+                            <div class="progress-step-label">Planifiée</div>
+                        </div>
+                        <div class="progress-step completed">
+                            <div class="progress-step-icon">✓</div>
+                            <div class="progress-step-label">En route</div>
+                        </div>
+                        <div class="progress-step active orange">
+                            <div class="progress-step-icon">⚡</div>
+                            <div class="progress-step-label">Arrive bientôt</div>
+                        </div>
+                        <div class="progress-step pending">
+                            <div class="progress-step-icon">🎉</div>
+                            <div class="progress-step-label">Livrée</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="padding: 12px 16px;">
+                <div class="delivery-time">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div class="delivery-info">
+                        <div class="delivery-label">Arrivée dans</div>
+                        <div class="delivery-hour" id="preciseEta" style="color: #f59e0b;">25 minutes</div>
+                        <div class="delivery-date">17 mars 2024</div>
+                        <div class="delivery-hour-range">11h27 - 11h57</div>
+                        <div style="margin-top: 8px;">
+                            <span class="confidence-badge confidence-high">Confiance élevée</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="padding: 12px 16px;">
+                <div class="tracking-number-section">
+                    <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20" style="width: 16px; height: 16px;">
+                        <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
+                    </svg>
+                    <div style="flex: 1;">
+                        <div class="tracking-label">N° de suivi</div>
+                        <div class="tracking-value">TESTINSTR202406</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2C6.48 2 3.5 4.98 3.5 8.5c0 4.78 5.36 9.21 6.5 10.5 1.14-1.29 6.5-5.72 6.5-10.5C16.5 4.98 13.52 2 10 2zm0 11.5c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                    </svg>
+                    <span class="card-title">Adresse de livraison</span>
+                </div>
+                <div class="address-text">
+                    123 Main Street. Apt 202<br>
+                    Montréal, QC, H2W 3R6
+                </div>
+                <span class="address-badge badge-residential">Résidentiel</span>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10z"/>
+                    </svg>
+                    <span class="card-title">Instructions de livraison</span>
+                </div>
+
+                <div class="urgent-banner">
+                    <div class="urgent-text">⚡ Dernière chance de mettre à jour vos instructions de livraison!</div>
+                </div>
+
+                <div class="instructions-display">
+                    <div class="instructions-item">
+                        <span class="instructions-label">Type d'adresse</span>
+                        <span class="instructions-value">Résidentiel</span>
+                    </div>
+                    <div class="instructions-item">
+                        <span class="instructions-label">Emplacement de dépôt</span>
+                        <span class="instructions-value">Porte d'entrée</span>
+                    </div>
+                    <div class="instructions-item">
+                        <span class="instructions-label">Code d'entrée</span>
+                        <span class="instructions-value">1234</span>
+                    </div>
+                    <div class="instructions-item">
+                        <span class="instructions-label">Code d'interphone</span>
+                        <span class="instructions-value">202</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <button class="btn-secondary" style="width: 100%; margin-bottom: 15px;">
+                        ✏️ Modifier les instructions
+                    </button>
+
+                    <div class="form-group">
+                        <label class="form-label">Code d'entrée (Modification rapide)</label>
+                        <input type="text" class="form-input" value="1234" placeholder="Entrez le code d'entrée">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Code d'interphone (Modification rapide)</label>
+                        <input type="text" class="form-input" value="202" placeholder="Entrez le code d'interphone">
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="saveForLater" checked>
+                    <label for="saveForLater" class="checkbox-label">Enregistrer ces instructions pour les livraisons futures</label>
+                </div>
+            </div>
+
+            <button class="btn-primary">
+                ✓ Soumettre les modifications de dernière minute
+            </button>
+        </div>
+
+        <!-- DELIVERED STATUS -->
+        <div id="status-delivered" class="status-content">
+            <div class="animated-status delivered">
+                <div class="status-animation animated">🎉</div>
+                <div class="status-text">
+                    <div style="line-height: 1.2;">C'est dans la boîte !</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.9); font-weight: 400; margin-top: 6px;">Livraison réussie, profite bien !</div>
+                </div>
+            </div>
+
+            <div class="card progress-bar-card">
+                <div class="progress-bar-wrapper">
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 100%;"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="progress-step completed">
+                            <div class="progress-step-icon">✓</div>
+                            <div class="progress-step-label">Planifiée</div>
+                        </div>
+                        <div class="progress-step completed">
+                            <div class="progress-step-icon">✓</div>
+                            <div class="progress-step-label">En route</div>
+                        </div>
+                        <div class="progress-step completed">
+                            <div class="progress-step-icon">✓</div>
+                            <div class="progress-step-label">Arrive bientôt</div>
+                        </div>
+                        <div class="progress-step completed">
+                            <div class="progress-step-icon">✓</div>
+                            <div class="progress-step-label">Livrée</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="padding: 12px 16px;">
+                <div class="delivery-time">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div class="delivery-info">
+                        <div class="delivery-label">Livré le</div>
+                        <div class="delivery-date">17 mars 2024</div>
+                        <div class="delivery-hour">11h45</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="padding: 12px 16px;">
+                <div class="tracking-number-section">
+                    <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20" style="width: 16px; height: 16px;">
+                        <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
+                    </svg>
+                    <div style="flex: 1;">
+                        <div class="tracking-label">N° de suivi</div>
+                        <div class="tracking-value">TESTINSTR202406</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4zm0 4v10a2 2 0 002 2h8a2 2 0 002-2V7H4zm6 4a1 1 0 10-2 0v2H6a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"/>
+                    </svg>
+                    <span class="card-title">Preuve de livraison</span>
+                </div>
+                <div class="pod-placeholder">
+                    <div class="pod-placeholder-icon">📷</div>
+                    <div style="font-size: 14px; font-weight: 500;">Cliquez pour voir la photo en taille réelle</div>
+                    <div style="font-size: 12px; margin-top: 5px;">Colis livré à la porte d'entrée</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2C6.48 2 3.5 4.98 3.5 8.5c0 4.78 5.36 9.21 6.5 10.5 1.14-1.29 6.5-5.72 6.5-10.5C16.5 4.98 13.52 2 10 2zm0 11.5c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                    </svg>
+                    <span class="card-title">Adresse de livraison</span>
+                </div>
+                <div class="address-text">
+                    123 Main Street. Apt 202<br>
+                    Montréal, QC, H2W 3R6
+                </div>
+                <span class="address-badge badge-residential">Résidentiel</span>
+                
+                <div class="map-container">
+                    <div class="map-pin">
+                        <div class="map-pin-icon"></div>
+                    </div>
+                    <div style="position: absolute; bottom: 10px; color: #666; font-size: 12px; left: 50%; transform: translateX(-50%);">
+                        Emplacement final de livraison
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10z"/>
+                    </svg>
+                    <span class="card-title">Instructions de livraison utilisées</span>
+                </div>
+
+                <div class="instructions-display">
+                    <div class="instructions-item">
+                        <span class="instructions-label">Type d'adresse</span>
+                        <span class="instructions-value">Résidentiel</span>
+                    </div>
+                    <div class="instructions-item">
+                        <span class="instructions-label">Emplacement de dépôt</span>
+                        <span class="instructions-value">Porte d'entrée</span>
+                    </div>
+                    <div class="instructions-item">
+                        <span class="instructions-label">Code d'entrée</span>
+                        <span class="instructions-value masked-value">••••</span>
+                    </div>
+                    <div class="instructions-item">
+                        <span class="instructions-label">Code d'interphone</span>
+                        <span class="instructions-value masked-value">•••</span>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="saveInstructions" checked>
+                    <label for="saveInstructions" class="checkbox-label">Enregistrer ces instructions pour les livraisons futures</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                    </svg>
+                    <span class="card-title">Heure de rendez-vous</span>
+                </div>
+
+                <div class="comparison-box">
+                    <div class="comparison-row">
+                        <span class="comparison-label">Fenêtre planifiée</span>
+                        <span class="comparison-value">11h27 - 15h27</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span class="comparison-label">Livraison réelle</span>
+                        <span class="comparison-value">11h45</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span class="comparison-label">Précision</span>
+                        <span class="comparison-value">
+                            À l'heure
+                            <span class="accuracy-badge accuracy-high">Confiance élevée</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-secondary">
+                📤 Partager la confirmation de livraison
+            </button>
+        </div>
+    </div>
+
+    <!-- Chat Button -->
+    <button class="chat-button" aria-label="Ouvrir le chat">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+        </svg>
+    </button>
+
+    <script>
+        // Status management
+        const statusSelect = document.getElementById('statusSelect');
+        const statusContents = document.querySelectorAll('.status-content');
+
+        function showStatus(status) {
+            statusContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            const targetStatus = document.getElementById(`status-${status}`);
+            if (targetStatus) {
+                targetStatus.classList.add('active');
+            }
+        }
+
+        statusSelect.addEventListener('change', (e) => {
+            showStatus(e.target.value);
+        });
+
+        // Initialize with default status
+        showStatus('almost-there');
+        statusSelect.value = 'almost-there';
+
+        // Simulate photo click to view full-size (delivered status)
+        const podPlaceholder = document.querySelector('.pod-placeholder');
+        if (podPlaceholder) {
+            podPlaceholder.addEventListener('click', function() {
+                alert('Ouverture de la photo de preuve de livraison en taille réelle...');
+            });
+        }
+
+        // Countdown timer for "almost there" status
+        let minutesLeft = 25;
+        const preciseEtaElement = document.getElementById('preciseEta');
+
+        function updateCountdown() {
+            if (preciseEtaElement) {
+                preciseEtaElement.textContent = `${minutesLeft} minutes`;
+                if (minutesLeft > 0) {
+                    minutesLeft--;
+                } else {
+                    minutesLeft = 0;
+                }
+            }
+        }
+
+        // Update every minute
+        setInterval(updateCountdown, 60000);
+
+        // Location confirmation functionality for scheduled status
+        const draggablePinScheduled = document.getElementById('draggablePinScheduled');
+        const confirmLocationBtnScheduled = document.getElementById('confirmLocationBtnScheduled');
+        const locationStatusScheduled = document.getElementById('locationStatusScheduled');
+        
+        if (draggablePinScheduled && confirmLocationBtnScheduled && locationStatusScheduled) {
+            let isLocationConfirmedScheduled = false;
+            let isDraggingScheduled = false;
+            let startXScheduled, startYScheduled, initialXScheduled, initialYScheduled;
+
+            // Make pin draggable
+            draggablePinScheduled.addEventListener('mousedown', (e) => {
+                isDraggingScheduled = true;
+                startXScheduled = e.clientX;
+                startYScheduled = e.clientY;
+                const rect = draggablePinScheduled.parentElement.getBoundingClientRect();
+                initialXScheduled = draggablePinScheduled.offsetLeft;
+                initialYScheduled = draggablePinScheduled.offsetTop;
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDraggingScheduled || !draggablePinScheduled) return;
+                
+                const mapContainer = draggablePinScheduled.parentElement;
+                const mapRect = mapContainer.getBoundingClientRect();
+                const deltaX = e.clientX - startXScheduled;
+                const deltaY = e.clientY - startYScheduled;
+                
+                const maxX = mapRect.width - 40;
+                const maxY = mapRect.height - 50;
+                
+                let newX = initialXScheduled + deltaX;
+                let newY = initialYScheduled + deltaY;
+                
+                newX = Math.max(0, Math.min(newX, maxX));
+                newY = Math.max(0, Math.min(newY, maxY));
+                
+                draggablePinScheduled.style.left = newX + 'px';
+                draggablePinScheduled.style.top = newY + 'px';
+                draggablePinScheduled.style.transform = 'translate(0, -100%)';
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDraggingScheduled = false;
+            });
+
+            // Touch events for mobile
+            draggablePinScheduled.addEventListener('touchstart', (e) => {
+                isDraggingScheduled = true;
+                const touch = e.touches[0];
+                startXScheduled = touch.clientX;
+                startYScheduled = touch.clientY;
+                const rect = draggablePinScheduled.parentElement.getBoundingClientRect();
+                initialXScheduled = draggablePinScheduled.offsetLeft;
+                initialYScheduled = draggablePinScheduled.offsetTop;
+                e.preventDefault();
+            });
+
+            document.addEventListener('touchmove', (e) => {
+                if (!isDraggingScheduled || !draggablePinScheduled) return;
+                
+                const touch = e.touches[0];
+                const mapContainer = draggablePinScheduled.parentElement;
+                const mapRect = mapContainer.getBoundingClientRect();
+                const deltaX = touch.clientX - startXScheduled;
+                const deltaY = touch.clientY - startYScheduled;
+                
+                const maxX = mapRect.width - 40;
+                const maxY = mapRect.height - 50;
+                
+                let newX = initialXScheduled + deltaX;
+                let newY = initialYScheduled + deltaY;
+                
+                newX = Math.max(0, Math.min(newX, maxX));
+                newY = Math.max(0, Math.min(newY, maxY));
+                
+                draggablePinScheduled.style.left = newX + 'px';
+                draggablePinScheduled.style.top = newY + 'px';
+                draggablePinScheduled.style.transform = 'translate(0, -100%)';
+                e.preventDefault();
+            });
+
+            document.addEventListener('touchend', () => {
+                isDraggingScheduled = false;
+            });
+
+            // Confirm location button
+            confirmLocationBtnScheduled.addEventListener('click', () => {
+                if (!isLocationConfirmedScheduled) {
+                    isLocationConfirmedScheduled = true;
+                    locationStatusScheduled.className = 'location-status confirmed';
+                    locationStatusScheduled.innerHTML = '<span class="location-status-icon">✅</span><span><strong>Emplacement confirmé!</strong> Votre adresse de livraison a été confirmée.</span>';
+                    confirmLocationBtnScheduled.textContent = 'Emplacement confirmé';
+                    confirmLocationBtnScheduled.classList.add('confirmed');
+                }
+            });
+        }
+
+        // Show/hide business hours based on address type for scheduled status
+        document.querySelectorAll('input[name="addressTypeScheduled"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const businessHours = document.getElementById('businessHoursScheduled');
+                if (businessHours) {
+                    if (this.value === 'business') {
+                        businessHours.style.display = 'block';
+                    } else {
+                        businessHours.style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

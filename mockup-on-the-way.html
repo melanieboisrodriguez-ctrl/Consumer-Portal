@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail Consommateur - En route</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #1a1a1a;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .header {
+            background-color: white;
+            padding: 10px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        @media (min-width: 375px) {
+            .header {
+                padding: 12px 16px;
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            color: #00b4a6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .header-separator {
+            width: 1px;
+            height: 20px;
+            background-color: #e0e0e0;
+            margin: 0 12px;
+        }
+
+        .lang-selector {
+            color: #1a1a1a;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+            padding: 0 8px;
+            letter-spacing: 0.01em;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #4b5563;
+            cursor: pointer;
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .icon-btn:hover {
+            color: #1a1a1a;
+        }
+
+        .container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 12px;
+        }
+
+        @media (min-width: 375px) {
+            .container {
+                padding: 16px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .container {
+                max-width: 414px;
+                margin: 0 auto;
+            }
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 375px) {
+            .title {
+                font-size: 22px;
+                margin-bottom: 18px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        @media (min-width: 375px) {
+            .card {
+                padding: 18px;
+                margin-bottom: 14px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .card {
+                padding: 20px;
+                margin-bottom: 16px;
+            }
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            width: 20px;
+            height: 20px;
+            color: #00b4a6;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            color: #00b4a6;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: -0.01em;
+        }
+
+        .tracking-number-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .tracking-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #00b4a6;
+        }
+
+        .tracking-value {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-top: 4px;
+            letter-spacing: -0.01em;
+        }
+
+        /* Compact tracking number in header area */
+        .compact-tracking {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .compact-tracking-icon {
+            width: 14px;
+            height: 14px;
+            color: #9ca3af;
+            flex-shrink: 0;
+        }
+
+        .compact-tracking-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .compact-tracking-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: #4b5563;
+            letter-spacing: 0.02em;
+        }
+
+        .delivery-time {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .delivery-time svg {
+            width: 24px;
+            height: 24px;
+            color: #00b4a6;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .delivery-info {
+            flex: 1;
+        }
+
+        .delivery-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #00b4a6;
+            margin-bottom: 6px;
+        }
+
+        .delivery-date {
+            font-size: 15px;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 6px;
+            letter-spacing: -0.01em;
+        }
+
+        .delivery-hour {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .delivery-hour-range {
+            font-size: 14px;
+            font-weight: 500;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .status-badge {
+            background-color: #5dade2;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: auto;
+        }
+
+        .progress-bar-wrapper {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar-card {
+            padding: 8px 12px;
+        }
+
+        @media (min-width: 375px) {
+            .progress-bar-card {
+                padding: 10px 14px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .progress-bar-card {
+                padding: 10px 16px;
+            }
+        }
+
+        .progress-step-label {
+            margin-top: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            color: #374151;
+            max-width: 80px;
+            letter-spacing: -0.01em;
+        }
+
+        .progress-bar-bg {
+            position: absolute;
+            top: 14px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e5e7eb;
+            border-radius: 1px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: #00b4a6;
+            border-radius: 1px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-step-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #00b4a6;
+            color: white;
+            border: 2px solid #00b4a6;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.completed .progress-step-icon {
+            background: #00b4a6;
+            animation: icon-complete 0.5s ease;
+        }
+
+        .progress-step.active .progress-step-icon {
+            background: #00b4a6;
+            animation: icon-pulse 2s ease-in-out infinite;
+        }
+
+        .progress-step.pending .progress-step-icon {
+            background: white;
+            color: #9ca3af;
+            border-color: #e5e7eb;
+        }
+
+        @keyframes icon-complete {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes icon-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Chat button */
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 16px;
+            width: 56px;
+            height: 56px;
+            background: #00b4a6;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 180, 166, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 1000;
+            touch-action: manipulation;
+        }
+
+        @media (min-width: 375px) {
+            .chat-button {
+                bottom: 24px;
+                right: 20px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .chat-button {
+                bottom: 24px;
+                right: 24px;
+            }
+        }
+
+        .chat-button:hover {
+            background: #009688;
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 180, 166, 0.4), 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-button:active {
+            transform: scale(0.95);
+        }
+
+        .chat-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Small Map Container */
+        .map-container-small {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 12px, rgba(0,0,0,0.03) 12px, rgba(0,0,0,0.03) 13px),
+                repeating-linear-gradient(90deg, transparent, transparent 12px, rgba(0,0,0,0.03) 12px, rgba(0,0,0,0.03) 13px);
+            border-radius: 8px;
+            margin-top: 12px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #d4edda;
+        }
+
+        .map-pin-small {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            width: 30px;
+            height: 38px;
+            z-index: 10;
+        }
+
+        .map-pin-icon-small {
+            width: 30px;
+            height: 38px;
+            background-color: #00b4a6;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            border: 2px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .map-pin-icon-small::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .info-item {
+            flex: 1;
+        }
+
+        .info-label {
+            color: #999;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .confidence-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+
+        .confidence-high {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .confidence-medium {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .confidence-explanation {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            margin-left: 6px;
+        }
+
+        .confidence-info-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #6b7280;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: help;
+            transition: background-color 0.2s ease;
+        }
+
+        .confidence-info-icon:hover {
+            background-color: #4b5563;
+        }
+
+        .confidence-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 8px;
+            padding: 10px 12px;
+            background-color: #1f2937;
+            color: white;
+            border-radius: 6px;
+            font-size: 12px;
+            line-height: 1.4;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            pointer-events: none;
+        }
+
+        .confidence-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+        }
+
+        .confidence-explanation:hover .confidence-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .address-text {
+            color: #1a1a1a;
+            font-size: 14px;
+            margin-top: 8px;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+        }
+
+        .address-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .badge-residential {
+            background-color: #e0f7f5;
+            color: #00b4a6;
+        }
+
+        .badge-business {
+            background-color: #e3f2fd;
+            color: #2196f3;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #00b4a6;
+            border: 2px solid #00b4a6;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #00b4a6;
+            color: white;
+        }
+
+        .btn-primary {
+            width: 100%;
+            background-color: #00b4a6;
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #009688;
+        }
+
+        .btn-icon {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .refresh-btn {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #666;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .refresh-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        .animated-status {
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            text-align: center;
+            animation: message-glow 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+            transition: all 0.5s ease;
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+        }
+
+        @media (min-width: 375px) {
+            .animated-status {
+                padding: 14px;
+                margin-bottom: 18px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .animated-status {
+                padding: 16px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .animated-status::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer-sweep 3s infinite;
+        }
+
+        @keyframes shimmer-sweep {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes message-glow {
+            0%, 100% { 
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 8px 15px rgba(13, 148, 136, 0.3);
+                transform: scale(1.01);
+            }
+        }
+
+        .status-animation {
+            font-size: 36px;
+            margin-bottom: 10px;
+            animation: emoji-bounce 2s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes emoji-bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(5deg); }
+        }
+
+        .status-text {
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.01em;
+        }
+
+        .instructions-display {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .instructions-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .instructions-item:last-child {
+            border-bottom: none;
+        }
+
+        .instructions-label {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .instructions-value {
+            color: #000;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #00b4a6;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #00b4a6;
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg fill="currentColor" viewBox="0 0 20 20" style="width: 24px; height: 24px;">
+                    <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="header-right">
+            <span class="lang-selector">FR</span>
+            <div class="header-separator"></div>
+            <button class="icon-btn">🔍</button>
+            <div class="header-separator"></div>
+            <button class="icon-btn">🔔</button>
+            <div class="header-separator"></div>
+            <button class="icon-btn">☰</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Compact Tracking Number -->
+        <div class="compact-tracking">
+            <svg class="compact-tracking-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
+            </svg>
+            <span class="compact-tracking-label">N° de suivi:</span>
+            <span class="compact-tracking-value">TESTINSTR202406</span>
+        </div>
+
+        <!-- Animated Status -->
+        <div class="animated-status">
+            <div class="status-animation">🚚</div>
+            <div class="status-text">
+                <div style="line-height: 1.2;">Elle est en route !</div>
+                <div style="font-size: 12px; color: rgba(255,255,255,0.9); font-weight: 400; margin-top: 6px;">En chemin vers toi, reste connecté !</div>
+            </div>
+        </div>
+
+        <!-- Progress Bar Card -->
+        <div class="card progress-bar-card">
+            <div class="progress-bar-wrapper">
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 50%;"></div>
+                </div>
+                <div class="progress-steps">
+                    <div class="progress-step completed">
+                        <div class="progress-step-icon">✓</div>
+                        <div class="progress-step-label">Planifiée</div>
+                    </div>
+                    <div class="progress-step active">
+                        <div class="progress-step-icon">🚚</div>
+                        <div class="progress-step-label">En route</div>
+                    </div>
+                    <div class="progress-step pending">
+                        <div class="progress-step-icon">⚡</div>
+                        <div class="progress-step-label">Arrive bientôt</div>
+                    </div>
+                    <div class="progress-step pending">
+                        <div class="progress-step-icon">🎉</div>
+                        <div class="progress-step-label">Livrée</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delivery Time Card -->
+        <div class="card" style="padding: 12px 16px;">
+            <!-- Appointment Time -->
+            <div class="delivery-time">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div class="delivery-info">
+                    <div class="delivery-label">Heure de livraison</div>
+                    <div class="delivery-date">17 mars 2024</div>
+                    <div class="delivery-hour">11h27 - 15h27</div>
+                    <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+                        <span class="confidence-badge confidence-medium">Confiance moyenne</span>
+                        <div class="confidence-explanation">
+                            <span class="confidence-info-icon">i</span>
+                            <div class="confidence-tooltip">Le niveau de confiance indique la précision estimée de l'heure de livraison basée sur les données historiques et les conditions actuelles.</div>
+                        </div>
+                        <span class="live-indicator">
+                            <span class="live-dot"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="refresh-btn" style="margin-top: 12px;">
+                🔄 Actualiser le suivi
+            </button>
+        </div>
+
+
+        <!-- Delivery Address Card -->
+        <div class="card">
+            <div class="card-header">
+                <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 2C6.48 2 3.5 4.98 3.5 8.5c0 4.78 5.36 9.21 6.5 10.5 1.14-1.29 6.5-5.72 6.5-10.5C16.5 4.98 13.52 2 10 2zm0 11.5c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                </svg>
+                <span class="card-title">Adresse de livraison</span>
+            </div>
+            <div class="address-text">
+                123 Main Street. Apt 202<br>
+                Montréal, QC, H2W 3R6
+            </div>
+            <span class="address-badge badge-residential">Résidentiel</span>
+            
+            <!-- Small Map -->
+            <div class="map-container-small">
+                <div class="map-pin-small">
+                    <div class="map-pin-icon-small"></div>
+                </div>
+            </div>
+            
+            <button class="btn-secondary" style="margin-top: 12px;">Modifier l'emplacement rapidement</button>
+        </div>
+
+        <!-- Delivery Instructions Card -->
+        <div class="card">
+            <div class="card-header">
+                <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10z"/>
+                </svg>
+                <span class="card-title">Instructions de livraison</span>
+            </div>
+
+            <div style="background-color: #fff3cd; padding: 12px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #ffc107;">
+                <span style="color: #856404; font-size: 13px;">Rappel: Vous pouvez toujours ajouter ou modifier vos instructions de livraison</span>
+            </div>
+
+            <!-- Current Instructions Display -->
+            <div class="instructions-display">
+                <div class="instructions-item">
+                    <span class="instructions-label">Type d'adresse</span>
+                    <span class="instructions-value">Résidentiel</span>
+                </div>
+                <div class="instructions-item">
+                    <span class="instructions-label">Emplacement de dépôt</span>
+                    <span class="instructions-value">Porte d'entrée</span>
+                </div>
+                <div class="instructions-item">
+                    <span class="instructions-label">Code d'entrée</span>
+                    <span class="instructions-value">1234</span>
+                </div>
+                <div class="instructions-item">
+                    <span class="instructions-label">Code d'interphone</span>
+                    <span class="instructions-value">202</span>
+                </div>
+                <div class="instructions-item">
+                    <span class="instructions-label">Instructions spéciales</span>
+                    <span class="instructions-value">Laisser à la porte si pas de réponse</span>
+                </div>
+            </div>
+
+            <button class="btn-secondary" style="width: 100%; margin-top: 15px;">
+                ✏️ Modifier les instructions
+            </button>
+        </div>
+
+        <!-- Save for Later Button -->
+        <button class="btn-primary">
+            <div class="btn-icon">💾</div>
+            Enregistrer les instructions pour les livraisons futures
+        </button>
+    </div>
+
+    <script>
+        // Simulate live updates
+        setInterval(() => {
+            const timeValue = document.querySelector('.info-value');
+            if (timeValue) {
+                // Simulate time update animation
+                timeValue.style.transition = 'opacity 0.3s';
+                timeValue.style.opacity = '0.7';
+                setTimeout(() => {
+                    timeValue.style.opacity = '1';
+                }, 300);
+            }
+        }, 5000);
+    </script>
+
+    <!-- Chat Button -->
+    <button class="chat-button" aria-label="Ouvrir le chat">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+        </svg>
+    </button>
+</body>
+</html>

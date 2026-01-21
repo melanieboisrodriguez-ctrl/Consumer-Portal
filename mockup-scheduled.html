@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail Consommateur - Planifié</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #1a1a1a;
+            line-height: 1.5;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .header {
+            background-color: white;
+            padding: 10px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        @media (min-width: 375px) {
+            .header {
+                padding: 12px 16px;
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            color: #00b4a6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .header-separator {
+            width: 1px;
+            height: 20px;
+            background-color: #e0e0e0;
+            margin: 0 12px;
+        }
+
+        .lang-selector {
+            color: #1a1a1a;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+            padding: 0 8px;
+            letter-spacing: 0.01em;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #4b5563;
+            cursor: pointer;
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .icon-btn:hover {
+            color: #1a1a1a;
+        }
+
+        .container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 12px;
+        }
+
+        @media (min-width: 375px) {
+            .container {
+                padding: 16px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .container {
+                max-width: 414px;
+                margin: 0 auto;
+            }
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 375px) {
+            .title {
+                font-size: 22px;
+                margin-bottom: 18px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        @media (min-width: 375px) {
+            .card {
+                padding: 18px;
+                margin-bottom: 14px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .card {
+                padding: 20px;
+                margin-bottom: 16px;
+            }
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            width: 20px;
+            height: 20px;
+            color: #00b4a6;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            color: #00b4a6;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: -0.01em;
+        }
+
+        .tracking-number-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .tracking-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #00b4a6;
+        }
+
+        .tracking-value {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-top: 4px;
+            letter-spacing: -0.01em;
+        }
+
+        /* Compact tracking number in header area */
+        .compact-tracking {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .compact-tracking-icon {
+            width: 14px;
+            height: 14px;
+            color: #9ca3af;
+            flex-shrink: 0;
+        }
+
+        .compact-tracking-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .compact-tracking-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: #4b5563;
+            letter-spacing: 0.02em;
+        }
+
+        .delivery-time {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .delivery-time svg {
+            width: 24px;
+            height: 24px;
+            color: #00b4a6;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .delivery-info {
+            flex: 1;
+        }
+
+        .delivery-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #00b4a6;
+            margin-bottom: 6px;
+        }
+
+        .delivery-date {
+            font-size: 15px;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 6px;
+            letter-spacing: -0.01em;
+        }
+
+        .delivery-hour {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .delivery-hour-range {
+            font-size: 14px;
+            font-weight: 500;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .status-badge {
+            background-color: #5dade2;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: auto;
+        }
+
+        .progress-bar-wrapper {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .progress-step-label {
+            margin-top: 4px;
+            font-size: 9px;
+            font-weight: 600;
+            text-align: center;
+            color: #374151;
+            max-width: 80px;
+            letter-spacing: -0.01em;
+        }
+
+        .progress-bar-bg {
+            position: absolute;
+            top: 14px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e5e7eb;
+            border-radius: 1px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: #00b4a6;
+            border-radius: 1px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-step-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #00b4a6;
+            color: white;
+            border: 2px solid #00b4a6;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.completed .progress-step-icon {
+            background: #00b4a6;
+            animation: icon-complete 0.5s ease;
+        }
+
+        .progress-step.active .progress-step-icon {
+            background: #00b4a6;
+            animation: icon-pulse 2s ease-in-out infinite;
+        }
+
+        .progress-step.pending .progress-step-icon {
+            background: white;
+            color: #9ca3af;
+            border-color: #e5e7eb;
+        }
+
+        @keyframes icon-complete {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes icon-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Chat button */
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 16px;
+            width: 56px;
+            height: 56px;
+            background: #00b4a6;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 180, 166, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 1000;
+            touch-action: manipulation;
+        }
+
+        @media (min-width: 375px) {
+            .chat-button {
+                bottom: 24px;
+                right: 20px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .chat-button {
+                bottom: 24px;
+                right: 24px;
+            }
+        }
+
+        .chat-button:hover {
+            background: #009688;
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 180, 166, 0.4), 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-button:active {
+            transform: scale(0.95);
+        }
+
+        .chat-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .info-item {
+            flex: 1;
+        }
+
+        .info-label {
+            color: #999;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .confidence-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            margin-left: 8px;
+        }
+
+        .confidence-high {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .confidence-medium {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .confidence-low {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .confidence-explanation {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            margin-left: 6px;
+        }
+
+        .confidence-info-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #6b7280;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: help;
+            transition: background-color 0.2s ease;
+        }
+
+        .confidence-info-icon:hover {
+            background-color: #4b5563;
+        }
+
+        .confidence-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 8px;
+            padding: 10px 12px;
+            background-color: #1f2937;
+            color: white;
+            border-radius: 6px;
+            font-size: 12px;
+            line-height: 1.4;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            pointer-events: none;
+        }
+
+        .confidence-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+        }
+
+        .confidence-explanation:hover .confidence-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .address-text {
+            color: #1a1a1a;
+            font-size: 14px;
+            margin-top: 8px;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+        }
+
+        .support-instruction {
+            margin-top: 12px;
+            padding: 10px 12px;
+            background-color: #f3f4f6;
+            border-left: 3px solid #6b7280;
+            border-radius: 4px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #4b5563;
+        }
+
+        .support-instruction strong {
+            color: #1f2937;
+            font-weight: 600;
+        }
+
+        .support-instruction a,
+        .support-link {
+            color: #00b4a6;
+            text-decoration: underline;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .support-instruction a:hover,
+        .support-link:hover {
+            color: #008B7D;
+            text-decoration: underline;
+        }
+
+        .support-instruction a:active,
+        .support-link:active {
+            color: #006B5F;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 15px, rgba(0,0,0,0.03) 15px, rgba(0,0,0,0.03) 16px),
+                repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(0,0,0,0.03) 15px, rgba(0,0,0,0.03) 16px);
+            border-radius: 8px;
+            margin-top: 12px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #d4edda;
+        }
+
+        .map-pin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            width: 32px;
+            height: 40px;
+            cursor: move;
+            z-index: 10;
+            transition: transform 0.2s ease;
+        }
+
+        .map-pin:active {
+            transform: translate(-50%, -100%) scale(1.1);
+        }
+
+        .map-pin-icon {
+            width: 32px;
+            height: 40px;
+            background-color: #00b4a6;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .map-pin-icon::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .map-radius-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border: 2px dashed rgba(0, 180, 166, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .map-info {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            right: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 10px;
+            color: #666;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .location-confirmation {
+            margin-top: 15px;
+        }
+
+        .location-status {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .location-status.unconfirmed {
+            background: #fef3c7;
+            border: 1px solid #fbbf24;
+            color: #92400e;
+        }
+
+        .location-status.confirmed {
+            background: #d1fae5;
+            border: 1px solid #10b981;
+            color: #065f46;
+        }
+
+        .location-status-icon {
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* Simplified helper text */
+        .section-helper {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        .location-status-icon {
+            font-size: 18px;
+        }
+
+        /* Step Indicator */
+        /* Step indicator - Simplified inline version */
+        .step-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #00b4a6;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: #00b4a6;
+            color: white;
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .step-indicator.completed .step-number {
+            background: #10b981;
+        }
+
+        .step-indicator.completed {
+            color: #10b981;
+        }
+
+        /* Card header with integrated step number */
+        .card-header-with-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step-number-inline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: #00b4a6;
+            color: white;
+            border-radius: 50%;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .card-header-with-step .step-number-inline.completed {
+            background: #10b981;
+        }
+
+        .card-header-with-step .step-number-inline.disabled {
+            background: #d1d5db;
+            color: #9ca3af;
+        }
+
+        .confirm-location-btn {
+            width: 100%;
+            padding: 14px 20px;
+            background: #00b4a6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 180, 166, 0.3);
+            position: relative;
+        }
+
+        .confirm-location-btn:hover:not(:disabled) {
+            background: #008B7D;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0, 180, 166, 0.4);
+        }
+
+        .confirm-location-btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .confirm-location-btn:focus {
+            outline: 3px solid rgba(0, 180, 166, 0.3);
+            outline-offset: 2px;
+        }
+
+        .confirm-location-btn.confirmed {
+            background: #10b981;
+            cursor: default;
+        }
+
+        .confirm-location-btn.confirmed:hover {
+            transform: none;
+            background: #10b981;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .preference-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .preference-card:hover {
+            background-color: #f9f9f9;
+        }
+
+        .preference-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .preference-icon-box {
+            width: 50px;
+            height: 50px;
+            background-color: #e0f7f5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preference-icon {
+            width: 24px;
+            height: 24px;
+            color: #00b4a6;
+        }
+
+        .preference-content {
+            flex: 1;
+        }
+
+        .preference-title {
+            color: #00b4a6;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .preference-desc {
+            color: #999;
+            font-size: 13px;
+        }
+
+        .arrow-right {
+            color: #999;
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            background-color: white;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #00b4a6;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .radio-option:hover {
+            border-color: #00b4a6;
+            background-color: #f0fdfc;
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 12px;
+            accent-color: #00b4a6;
+        }
+
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .toggle-label {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 26px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #00b4a6;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        .btn-primary {
+            width: 100%;
+            background-color: transparent;
+            color: #00b4a6;
+            border: 2px solid #00b4a6;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            border-color: #d1d5db;
+            color: #9ca3af;
+        }
+
+        .btn-primary:not(:disabled):hover {
+            background-color: #f0fdfa;
+            border-color: #008B7D;
+            color: #008B7D;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 180, 166, 0.15);
+        }
+
+        .btn-primary:not(:disabled):active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:not(:disabled):focus {
+            outline: 3px solid rgba(0, 180, 166, 0.3);
+            outline-offset: 2px;
+        }
+
+        .btn-primary.enabled {
+            background-color: #00b4a6;
+            color: white;
+            border-color: #00b4a6;
+        }
+
+        .btn-primary.enabled:hover {
+            background-color: #008B7D;
+            border-color: #008B7D;
+            color: white;
+        }
+
+        .btn-icon {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .info-icon {
+            width: 16px;
+            height: 16px;
+            background-color: #999;
+            border-radius: 50%;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            margin-left: 8px;
+            cursor: help;
+        }
+
+        .animated-status {
+            color: white;
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: message-glow 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+            transition: all 0.5s ease;
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+        }
+
+        .animated-status::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer-sweep 3s infinite;
+        }
+
+        @keyframes shimmer-sweep {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes message-glow {
+            0%, 100% { 
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 8px 15px rgba(13, 148, 136, 0.3);
+                transform: scale(1.01);
+            }
+        }
+
+        .status-animation {
+            font-size: 36px;
+            margin-bottom: 10px;
+            animation: emoji-bounce 2s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes emoji-bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(5deg); }
+        }
+
+        .status-text {
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.01em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg fill="currentColor" viewBox="0 0 20 20" style="width: 24px; height: 24px;">
+                    <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="header-right">
+            <span class="lang-selector">FR</span>
+            <div class="header-separator"></div>
+            <button class="icon-btn">🔍</button>
+            <div class="header-separator"></div>
+            <button class="icon-btn">🔔</button>
+            <div class="header-separator"></div>
+            <button class="icon-btn">☰</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Compact Tracking Number -->
+        <div class="compact-tracking">
+            <svg class="compact-tracking-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
+            </svg>
+            <span class="compact-tracking-label">N° de suivi:</span>
+            <span class="compact-tracking-value">TESTINSTR202406</span>
+        </div>
+
+        <!-- Animated Status -->
+        <div class="animated-status">
+            <div class="status-animation">📦</div>
+            <div class="status-text">
+                <div style="line-height: 1.2;">Ta commande est avec nous !</div>
+                <div style="font-size: 12px; color: rgba(255,255,255,0.9); font-weight: 400; margin-top: 6px;">On planifie la livraison, on s'en occupe !</div>
+            </div>
+        </div>
+
+        <!-- Progress Bar Card -->
+        <div class="card progress-bar-card" style="padding: 8px 12px;">
+            <div class="progress-bar-wrapper">
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 25%;"></div>
+                </div>
+                <div class="progress-steps">
+                    <div class="progress-step active">
+                        <div class="progress-step-icon">📦</div>
+                        <div class="progress-step-label">Planifiée</div>
+                    </div>
+                    <div class="progress-step pending">
+                        <div class="progress-step-icon">🚚</div>
+                        <div class="progress-step-label">En route</div>
+                    </div>
+                    <div class="progress-step pending">
+                        <div class="progress-step-icon">⚡</div>
+                        <div class="progress-step-label">Arrive bientôt</div>
+                    </div>
+                    <div class="progress-step pending">
+                        <div class="progress-step-icon">🎉</div>
+                        <div class="progress-step-label">Livrée</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delivery Time Card -->
+        <div class="card" style="padding: 12px 16px;">
+            <!-- Appointment Time -->
+            <div class="delivery-time">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div class="delivery-info">
+                    <div class="delivery-label">Date de livraison</div>
+                    <div class="delivery-date">17 mars 2024</div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Address Location Confirmation Section -->
+        <h2 class="title" style="margin-top: 40px; margin-bottom: 15px;">Confirmer l'emplacement</h2>
+        
+        <!-- Step 1 Indicator -->
+        <div class="step-indicator" id="step1Indicator" style="margin-bottom: 16px;">
+            <span class="step-number">1</span>
+            <span>Étape 1 sur 2</span>
+        </div>
+
+        <!-- Delivery Address Confirmation Card -->
+        <div class="card">
+            <div class="card-header">
+                <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 2C6.48 2 3.5 4.98 3.5 8.5c0 4.78 5.36 9.21 6.5 10.5 1.14-1.29 6.5-5.72 6.5-10.5C16.5 4.98 13.52 2 10 2zm0 11.5c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                </svg>
+                <span class="card-title">Adresse de livraison <span style="font-size: 12px; font-weight: 400; color: #6b7280;">(non modifiable)</span></span>
+                <span class="info-icon" title="Cliquez pour modifier l'adresse via le CEC">i</span>
+            </div>
+            <div class="address-text" style="font-size: 14px; line-height: 1.6; color: #1a1a1a; margin-top: 8px;">
+                123 Main Street. Apt 202<br>
+                Montréal, QC, H2W 3R6
+            </div>
+            
+            <div style="margin-top: 8px; font-size: 12px; color: #6b7280;">
+                Pour changer l'adresse, contacter le <a href="mailto:support@intelcom.ca" class="support-link" target="_blank">support client</a>.
+            </div>
+            
+            <!-- Location Confirmation (Yellow Box) - Moved above map -->
+            <div class="location-confirmation" style="margin-top: 15px; margin-bottom: 15px;">
+                <div class="location-status unconfirmed" id="locationStatus">
+                    <span class="location-status-icon">📍</span>
+                    <span>Vérifiez que l'emplacement sur la carte correspond à votre adresse. Ajuster en glissant l'épingle, si nécessaire (rayon de 100 m).</span>
+                </div>
+            </div>
+            
+            <!-- Interactive Map -->
+            <div class="map-container">
+                <div class="map-radius-circle"></div>
+                <div class="map-pin" id="draggablePin">
+                    <div class="map-pin-icon"></div>
+                </div>
+            </div>
+
+            <!-- Confirm Location Button -->
+            <div class="location-confirmation" style="margin-top: 15px;">
+                <button class="confirm-location-btn" id="confirmLocationBtn" aria-label="Confirmer l'emplacement de livraison - Étape 1 sur 2">Confirmer l'emplacement</button>
+            </div>
+
+            <!-- Address Type Selector -->
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="form-label">Type d'adresse</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="addressType" value="residential" checked>
+                        <span>Résidentiel</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="addressType" value="business">
+                        <span>Commercial</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Set Your Preferences Section -->
+        <h2 class="title" style="margin-top: 40px; margin-bottom: 15px;">Définir vos préférences</h2>
+        
+        <!-- Step 2 Indicator -->
+        <div class="step-indicator" id="step2Indicator" style="opacity: 0.5; margin-bottom: 16px;">
+            <span class="step-number">2</span>
+            <span>Étape 2 sur 2</span>
+        </div>
+
+        <!-- Delivery Instructions Card -->
+        <div class="card">
+            <div class="card-header">
+                <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10z"/>
+                </svg>
+                <span class="card-title">Instructions de livraison</span>
+            </div>
+
+            <!-- Safe Drop Options -->
+            <div class="form-group">
+                <label class="form-label">Emplacement de dépôt sécurisé</label>
+                <select class="form-input" name="safeDrop">
+                    <option value="">Sélectionnez un emplacement</option>
+                    <option value="front">Porte d'entrée</option>
+                    <option value="back">Porte arrière</option>
+                    <option value="side">Entrée latérale</option>
+                    <option value="garage">Garage</option>
+                    <option value="other">Autre</option>
+                </select>
+            </div>
+
+            <!-- Access Code -->
+            <div class="form-group">
+                <label class="form-label">Code d'entrée</label>
+                <input type="text" class="form-input" placeholder="Entrez le code d'entrée">
+            </div>
+
+            <!-- Buzzer Code -->
+            <div class="form-group">
+                <label class="form-label">Code d'interphone</label>
+                <input type="text" class="form-input" placeholder="Entrez le code d'interphone">
+            </div>
+
+            <!-- Special Instructions -->
+            <div class="form-group">
+                <label class="form-label">Instructions spéciales</label>
+                <textarea class="form-input" rows="3" placeholder="Ajoutez des instructions de livraison supplémentaires..."></textarea>
+            </div>
+
+            <!-- Business Hours (conditional) -->
+            <div class="form-group" id="businessHours" style="display: none;">
+                <label class="form-label">Heures d'ouverture</label>
+                <input type="text" class="form-input" placeholder="ex. : Lun-Ven 9h-17h">
+                <div style="margin-top: 10px;">
+                    <label class="radio-option">
+                        <input type="checkbox" name="weekendClosed">
+                        <span>Fermé le week-end</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Save for Future Toggle -->
+            <div class="toggle-group">
+                <span class="toggle-label">Enregistrer les instructions pour les livraisons futures</span>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="btn-primary" id="confirmInstructionsBtn" disabled aria-label="Confirmer les instructions de livraison - Étape 2 sur 2 (désactivé jusqu'à confirmation de l'emplacement)">
+            <div class="btn-icon">i</div>
+            Confirmer les instructions
+        </button>
+        
+        <!-- Helper Text -->
+        <p id="instructionsHelperText" style="text-align: center; color: #6b7280; font-size: 13px; margin-top: 12px; line-height: 1.5;">
+            <span style="opacity: 0.7;">Veuillez d'abord confirmer l'emplacement ci-dessus pour continuer.</span>
+        </p>
+    </div>
+
+    <script>
+        // Show/hide business hours based on address type
+        document.querySelectorAll('input[name="addressType"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const businessHours = document.getElementById('businessHours');
+                if (this.value === 'business') {
+                    businessHours.style.display = 'block';
+                } else {
+                    businessHours.style.display = 'none';
+                }
+            });
+        });
+
+        // Location confirmation functionality
+        const draggablePin = document.getElementById('draggablePin');
+        const confirmLocationBtn = document.getElementById('confirmLocationBtn');
+        const locationStatus = document.getElementById('locationStatus');
+        let isLocationConfirmed = false;
+        let isDragging = false;
+        let startX, startY, initialX, initialY;
+
+        // Make pin draggable
+        draggablePin.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            const rect = draggablePin.parentElement.getBoundingClientRect();
+            initialX = draggablePin.offsetLeft;
+            initialY = draggablePin.offsetTop;
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            
+            const mapContainer = draggablePin.parentElement;
+            const mapRect = mapContainer.getBoundingClientRect();
+            const deltaX = e.clientX - startX;
+            const deltaY = e.clientY - startY;
+            
+            // Constrain within map bounds (considering pin size)
+            const maxX = mapRect.width - 40;
+            const maxY = mapRect.height - 50;
+            
+            let newX = initialX + deltaX;
+            let newY = initialY + deltaY;
+            
+            newX = Math.max(0, Math.min(newX, maxX));
+            newY = Math.max(0, Math.min(newY, maxY));
+            
+            draggablePin.style.left = newX + 'px';
+            draggablePin.style.top = newY + 'px';
+            draggablePin.style.transform = 'translate(0, -100%)';
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+            }
+        });
+
+        // Touch events for mobile
+        draggablePin.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            const touch = e.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            const rect = draggablePin.parentElement.getBoundingClientRect();
+            initialX = draggablePin.offsetLeft;
+            initialY = draggablePin.offsetTop;
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            
+            const touch = e.touches[0];
+            const mapContainer = draggablePin.parentElement;
+            const mapRect = mapContainer.getBoundingClientRect();
+            const deltaX = touch.clientX - startX;
+            const deltaY = touch.clientY - startY;
+            
+            const maxX = mapRect.width - 40;
+            const maxY = mapRect.height - 50;
+            
+            let newX = initialX + deltaX;
+            let newY = initialY + deltaY;
+            
+            newX = Math.max(0, Math.min(newX, maxX));
+            newY = Math.max(0, Math.min(newY, maxY));
+            
+            draggablePin.style.left = newX + 'px';
+            draggablePin.style.top = newY + 'px';
+            draggablePin.style.transform = 'translate(0, -100%)';
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchend', () => {
+            if (isDragging) {
+                isDragging = false;
+            }
+        });
+
+        // Confirm location button - Progressive sequence
+        const confirmInstructionsBtn = document.getElementById('confirmInstructionsBtn');
+        const instructionsHelperText = document.getElementById('instructionsHelperText');
+        const step1Indicator = document.getElementById('step1Indicator');
+        const step2Indicator = document.getElementById('step2Indicator');
+
+        confirmLocationBtn.addEventListener('click', () => {
+            if (!isLocationConfirmed) {
+                isLocationConfirmed = true;
+                
+                // Update location status
+                locationStatus.className = 'location-status confirmed';
+                locationStatus.innerHTML = '<span class="location-status-icon">✅</span><span><strong>Emplacement confirmé!</strong> Vous pouvez maintenant définir vos préférences ci-dessous.</span>';
+                
+                // Update button
+                confirmLocationBtn.textContent = '✓ Emplacement confirmé';
+                confirmLocationBtn.classList.add('confirmed');
+                confirmLocationBtn.setAttribute('aria-label', 'Emplacement confirmé');
+                
+                // Update step indicator
+                step1Indicator.classList.add('completed');
+                
+                // Enable step 2
+                confirmInstructionsBtn.disabled = false;
+                confirmInstructionsBtn.classList.add('enabled');
+                confirmInstructionsBtn.setAttribute('aria-label', 'Confirmer les instructions de livraison - Étape 2 sur 2');
+                
+                // Update step 2 indicator
+                step2Indicator.style.opacity = '1';
+                step2Indicator.style.color = '#00b4a6';
+                
+                // Update helper text
+                instructionsHelperText.innerHTML = '<span style="color: #10b981;">✓ Emplacement confirmé. Vous pouvez maintenant définir vos préférences.</span>';
+                
+                // Smooth scroll to preferences section
+                setTimeout(() => {
+                    document.querySelector('.title').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
+                
+                // Announce to screen readers
+                const announcement = document.createElement('div');
+                announcement.setAttribute('role', 'status');
+                announcement.setAttribute('aria-live', 'polite');
+                announcement.setAttribute('aria-atomic', 'true');
+                announcement.style.position = 'absolute';
+                announcement.style.left = '-10000px';
+                announcement.style.width = '1px';
+                announcement.style.height = '1px';
+                announcement.style.overflow = 'hidden';
+                announcement.textContent = 'Emplacement confirmé. Vous pouvez maintenant définir vos préférences de livraison.';
+                document.body.appendChild(announcement);
+                setTimeout(() => document.body.removeChild(announcement), 1000);
+            }
+        });
+
+        // Confirm instructions button
+        confirmInstructionsBtn.addEventListener('click', () => {
+            if (!confirmInstructionsBtn.disabled) {
+                // Show success message
+                const successMessage = document.createElement('div');
+                successMessage.style.cssText = 'position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 16px 24px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 10000; font-weight: 600;';
+                successMessage.textContent = '✓ Préférences enregistrées avec succès!';
+                document.body.appendChild(successMessage);
+                
+                setTimeout(() => {
+                    successMessage.style.transition = 'opacity 0.3s';
+                    successMessage.style.opacity = '0';
+                    setTimeout(() => document.body.removeChild(successMessage), 300);
+                }, 3000);
+                
+                // Announce to screen readers
+                const announcement = document.createElement('div');
+                announcement.setAttribute('role', 'status');
+                announcement.setAttribute('aria-live', 'polite');
+                announcement.setAttribute('aria-atomic', 'true');
+                announcement.style.position = 'absolute';
+                announcement.style.left = '-10000px';
+                announcement.style.width = '1px';
+                announcement.style.height = '1px';
+                announcement.style.overflow = 'hidden';
+                announcement.textContent = 'Préférences de livraison enregistrées avec succès';
+                document.body.appendChild(announcement);
+                setTimeout(() => document.body.removeChild(announcement), 1000);
+            }
+        });
+    </script>
+
+    <!-- Chat Button -->
+    <button class="chat-button" aria-label="Ouvrir le chat">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+        </svg>
+    </button>
+</body>
+</html>

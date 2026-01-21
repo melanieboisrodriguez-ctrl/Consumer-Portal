@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dspotdessert - Votre commande est planifiée</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-link: #19AFEE;
+            --color-accent: #19AFEE;
+            --color-primary: #513528;
+            --color-background: #FFFFFF;
+            --color-text-primary: #333333;
+            --color-border: #CCCCCC;
+            --spacing-base: 4px;
+            --border-radius: 4px;
+        }
+
+        body {
+            font-family: 'Poppins', Helvetica, Arial, Verdana, sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1 {
+            font-family: 'Fredoka One', sans-serif;
+            font-size: 36px;
+            color: var(--color-primary);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-family: 'Fredoka One', sans-serif;
+            font-size: 26px;
+            color: var(--color-primary);
+            line-height: 1.3;
+        }
+
+        p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .header {
+            background-color: var(--color-background);
+            padding: calc(var(--spacing-base) * 3) calc(var(--spacing-base) * 4);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(81, 53, 40, 0.08);
+            border-bottom: 2px solid rgba(81, 53, 40, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        @media (min-width: 375px) {
+            .header {
+                padding: calc(var(--spacing-base) * 4) calc(var(--spacing-base) * 5);
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--spacing-base) * 2);
+            font-family: 'Fredoka One', sans-serif;
+            font-size: 24px;
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-accent) 0%, #0d8cc4 100%);
+            border-radius: calc(var(--border-radius) * 2);
+            color: white;
+            font-size: 20px;
+            box-shadow: 0 2px 6px rgba(25, 175, 238, 0.3);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .header-separator {
+            width: 1px;
+            height: 24px;
+            background-color: rgba(81, 53, 40, 0.15);
+            margin: 0 calc(var(--spacing-base) * 3);
+        }
+
+        .lang-selector {
+            color: var(--color-primary);
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            padding: calc(var(--spacing-base) * 2) calc(var(--spacing-base) * 3);
+            border-radius: var(--border-radius);
+            transition: all 0.2s ease;
+        }
+
+        .lang-selector:hover {
+            background-color: rgba(25, 175, 238, 0.1);
+            color: var(--color-accent);
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--color-primary);
+            cursor: pointer;
+            padding: calc(var(--spacing-base) * 2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--border-radius);
+            transition: all 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            background-color: rgba(25, 175, 238, 0.1);
+            color: var(--color-accent);
+            transform: scale(1.1);
+        }
+
+        .container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            padding: calc(var(--spacing-base) * 4);
+        }
+
+        @media (min-width: 375px) {
+            .container {
+                padding: calc(var(--spacing-base) * 5);
+            }
+        }
+
+        @media (min-width: 414px) {
+            .container {
+                max-width: 414px;
+                margin: 0 auto;
+            }
+        }
+
+        .title {
+            font-family: 'Fredoka One', sans-serif;
+            font-size: 26px;
+            color: var(--color-primary);
+            margin-bottom: calc(var(--spacing-base) * 5);
+            line-height: 1.3;
+        }
+
+        @media (min-width: 375px) {
+            .title {
+                font-size: 28px;
+                margin-bottom: calc(var(--spacing-base) * 6);
+            }
+        }
+
+        .card {
+            background-color: var(--color-background);
+            border-radius: calc(var(--border-radius) * 2);
+            padding: calc(var(--spacing-base) * 5);
+            margin-bottom: calc(var(--spacing-base) * 4);
+            box-shadow: 0 4px 12px rgba(81, 53, 40, 0.08), 0 2px 4px rgba(81, 53, 40, 0.04);
+            border: 2px solid rgba(81, 53, 40, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent) 0%, rgba(25, 175, 238, 0.3) 100%);
+            border-radius: calc(var(--border-radius) * 2) calc(var(--border-radius) * 2) 0 0;
+        }
+
+        @media (min-width: 375px) {
+            .card {
+                padding: calc(var(--spacing-base) * 6);
+                margin-bottom: calc(var(--spacing-base) * 5);
+            }
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--spacing-base) * 3);
+            margin-bottom: calc(var(--spacing-base) * 4);
+        }
+
+        .card-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--color-accent);
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            color: var(--color-accent);
+            font-weight: 600;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .animated-status {
+            background: linear-gradient(135deg, var(--color-accent) 0%, #0d8cc4 100%);
+            color: white;
+            padding: calc(var(--spacing-base) * 6);
+            border-radius: calc(var(--border-radius) * 3);
+            margin-bottom: calc(var(--spacing-base) * 5);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(25, 175, 238, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @media (min-width: 375px) {
+            .animated-status {
+                padding: calc(var(--spacing-base) * 7);
+            }
+        }
+
+        .animated-status::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(255, 255, 255, 0.05) 20px,
+                rgba(255, 255, 255, 0.05) 40px
+            );
+            animation: paper-slide 8s linear infinite;
+        }
+
+        @keyframes paper-slide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, 40px); }
+        }
+
+        .status-animation {
+            font-size: 48px;
+            margin-bottom: calc(var(--spacing-base) * 3);
+            animation: emoji-bounce 2s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        @keyframes emoji-bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(5deg); }
+        }
+
+        .status-text {
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .status-subtext {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 400;
+            margin-top: calc(var(--spacing-base) * 2);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .progress-bar-wrapper {
+            position: relative;
+            margin-bottom: calc(var(--spacing-base) * 3);
+        }
+
+        .progress-bar-bg {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(81, 53, 40, 0.1);
+            border-radius: calc(var(--border-radius) * 2);
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-accent) 0%, #0d8cc4 100%);
+            border-radius: calc(var(--border-radius) * 2);
+            transition: width 0.5s ease;
+            box-shadow: 0 0 8px rgba(25, 175, 238, 0.5);
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-accent);
+            color: white;
+            border: 3px solid var(--color-accent);
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(25, 175, 238, 0.3);
+        }
+
+        .progress-step.completed .progress-step-icon {
+            background: var(--color-accent);
+            animation: icon-complete 0.5s ease;
+        }
+
+        .progress-step.active .progress-step-icon {
+            background: var(--color-accent);
+            animation: icon-pulse 2s ease-in-out infinite;
+            box-shadow: 0 4px 16px rgba(25, 175, 238, 0.5);
+        }
+
+        .progress-step.pending .progress-step-icon {
+            background: white;
+            color: rgba(81, 53, 40, 0.3);
+            border-color: rgba(81, 53, 40, 0.2);
+            box-shadow: 0 2px 6px rgba(81, 53, 40, 0.1);
+        }
+
+        @keyframes icon-complete {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes icon-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .progress-step-label {
+            margin-top: calc(var(--spacing-base) * 2);
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            color: var(--color-primary);
+            max-width: 80px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .tracking-number-section {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--spacing-base) * 2);
+            margin-bottom: calc(var(--spacing-base) * 4);
+            padding-bottom: calc(var(--spacing-base) * 4);
+            border-bottom: 2px dashed rgba(81, 53, 40, 0.15);
+        }
+
+        .tracking-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-accent);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .tracking-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-top: calc(var(--spacing-base) * 1);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .delivery-time {
+            display: flex;
+            align-items: flex-start;
+            gap: calc(var(--spacing-base) * 3);
+            padding-top: calc(var(--spacing-base) * 4);
+        }
+
+        .delivery-time svg {
+            width: 28px;
+            height: 28px;
+            color: var(--color-accent);
+            margin-top: calc(var(--spacing-base) * 1);
+            flex-shrink: 0;
+        }
+
+        .delivery-info {
+            flex: 1;
+        }
+
+        .delivery-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-accent);
+            margin-bottom: calc(var(--spacing-base) * 2);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .delivery-date {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: calc(var(--spacing-base) * 2);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .address-text {
+            color: var(--color-text-primary);
+            font-size: 15px;
+            margin-top: calc(var(--spacing-base) * 2);
+            line-height: 1.7;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(25, 175, 238, 0.05) 20px, rgba(25, 175, 238, 0.05) 21px),
+                repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(25, 175, 238, 0.05) 20px, rgba(25, 175, 238, 0.05) 21px);
+            border-radius: calc(var(--border-radius) * 2);
+            margin-top: calc(var(--spacing-base) * 4);
+            position: relative;
+            overflow: hidden;
+            border: 2px dashed rgba(25, 175, 238, 0.3);
+            box-shadow: inset 0 2px 8px rgba(81, 53, 40, 0.05);
+        }
+
+        .map-pin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            width: 48px;
+            height: 56px;
+            cursor: move;
+            z-index: 10;
+            transition: transform 0.2s ease;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        .map-pin:active {
+            transform: translate(-50%, -100%) scale(1.15);
+        }
+
+        .map-pin-icon {
+            width: 48px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--color-accent) 0%, #0d8cc4 100%);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(25, 175, 238, 0.4);
+            position: relative;
+        }
+
+        .map-pin-icon::after {
+            content: '📍';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            font-size: 20px;
+        }
+
+        .map-radius-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140px;
+            height: 140px;
+            border: 3px dashed rgba(25, 175, 238, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .map-info {
+            position: absolute;
+            bottom: calc(var(--spacing-base) * 3);
+            left: calc(var(--spacing-base) * 3);
+            right: calc(var(--spacing-base) * 3);
+            background: rgba(255, 255, 255, 0.98);
+            padding: calc(var(--spacing-base) * 3) calc(var(--spacing-base) * 4);
+            border-radius: calc(var(--border-radius) * 2);
+            font-size: 11px;
+            color: var(--color-text-primary);
+            box-shadow: 0 4px 12px rgba(81, 53, 40, 0.15);
+            border: 2px solid rgba(25, 175, 238, 0.2);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .location-confirmation {
+            margin-top: calc(var(--spacing-base) * 4);
+        }
+
+        .location-status {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--spacing-base) * 2);
+            padding: calc(var(--spacing-base) * 4);
+            background: #fff3cd;
+            border-radius: calc(var(--border-radius) * 2);
+            margin-bottom: calc(var(--spacing-base) * 3);
+            font-size: 14px;
+            border: 2px solid #ffc107;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .location-status.confirmed {
+            background: #d1fae5;
+            border: 2px solid var(--color-accent);
+            color: #065f46;
+        }
+
+        .location-status-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .confirm-location-btn {
+            width: 100%;
+            padding: calc(var(--spacing-base) * 4) calc(var(--spacing-base) * 6);
+            background: linear-gradient(135deg, var(--color-accent) 0%, #0d8cc4 100%);
+            color: white;
+            border: none;
+            border-radius: calc(var(--border-radius) * 2);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(25, 175, 238, 0.3);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .confirm-location-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(25, 175, 238, 0.4);
+        }
+
+        .confirm-location-btn:active {
+            transform: translateY(0);
+        }
+
+        .confirm-location-btn.confirmed {
+            background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+            cursor: not-allowed;
+        }
+
+        .form-group {
+            margin-bottom: calc(var(--spacing-base) * 5);
+        }
+
+        .form-label {
+            color: var(--color-primary);
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: calc(var(--spacing-base) * 2);
+            display: block;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: calc(var(--spacing-base) * 3) calc(var(--spacing-base) * 4);
+            border: 2px solid var(--color-border);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            background-color: white;
+            font-family: 'Roboto', sans-serif;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(25, 175, 238, 0.1);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-base) * 3);
+            margin-top: calc(var(--spacing-base) * 3);
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: calc(var(--spacing-base) * 3) calc(var(--spacing-base) * 4);
+            border: 2px solid rgba(81, 53, 40, 0.2);
+            border-radius: calc(var(--border-radius) * 2);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .radio-option:hover {
+            border-color: var(--color-accent);
+            background-color: rgba(25, 175, 238, 0.05);
+            transform: translateX(4px);
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: calc(var(--spacing-base) * 3);
+            accent-color: var(--color-accent);
+        }
+
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: calc(var(--spacing-base) * 4);
+            background-color: rgba(25, 175, 238, 0.05);
+            border-radius: calc(var(--border-radius) * 2);
+            margin-top: calc(var(--spacing-base) * 3);
+            border: 2px solid rgba(25, 175, 238, 0.1);
+        }
+
+        .toggle-label {
+            color: var(--color-primary);
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 52px;
+            height: 28px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(81, 53, 40, 0.2);
+            transition: 0.4s;
+            border-radius: 28px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        input:checked + .slider {
+            background-color: var(--color-accent);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        .btn-primary {
+            width: 100%;
+            background: linear-gradient(135deg, var(--color-accent) 0%, #0d8cc4 100%);
+            color: white;
+            border: none;
+            padding: calc(var(--spacing-base) * 4) calc(var(--spacing-base) * 6);
+            border-radius: calc(var(--border-radius) * 2);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: calc(var(--spacing-base) * 3);
+            margin-top: calc(var(--spacing-base) * 5);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(25, 175, 238, 0.3);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(25, 175, 238, 0.4);
+        }
+
+        .btn-icon {
+            width: 24px;
+            height: 24px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .info-icon {
+            width: 18px;
+            height: 18px;
+            background-color: var(--color-accent);
+            border-radius: 50%;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-left: calc(var(--spacing-base) * 2);
+            cursor: help;
+            font-weight: 600;
+        }
+
+        .chat-button {
+            position: fixed;
+            bottom: calc(var(--spacing-base) * 6);
+            right: calc(var(--spacing-base) * 5);
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--color-accent) 0%, #0d8cc4 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 6px 20px rgba(25, 175, 238, 0.4), 0 2px 8px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            touch-action: manipulation;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 24px rgba(25, 175, 238, 0.5), 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-button:active {
+            transform: scale(0.95);
+        }
+
+        .chat-button svg {
+            width: 28px;
+            height: 28px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">🍰</div>
+            <span>Dspotdessert</span>
+        </div>
+        <div class="header-right">
+            <span class="lang-selector">FR</span>
+            <div class="header-separator"></div>
+            <button class="icon-btn">🔍</button>
+            <div class="header-separator"></div>
+            <button class="icon-btn">🔔</button>
+            <div class="header-separator"></div>
+            <button class="icon-btn">☰</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Animated Status -->
+        <div class="animated-status">
+            <div class="status-animation">📦</div>
+            <div class="status-text">
+                <div style="line-height: 1.2;">Votre commande est avec nous !</div>
+                <div class="status-subtext">On planifie la livraison, on s'en occupe !</div>
+            </div>
+        </div>
+
+        <!-- Progress Bar Card -->
+        <div class="card progress-bar-card">
+            <div class="progress-bar-wrapper">
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 25%;"></div>
+                </div>
+                <div class="progress-steps">
+                    <div class="progress-step active">
+                        <div class="progress-step-icon">📦</div>
+                        <div class="progress-step-label">Planifiée</div>
+                    </div>
+                    <div class="progress-step pending">
+                        <div class="progress-step-icon">🚚</div>
+                        <div class="progress-step-label">En route</div>
+                    </div>
+                    <div class="progress-step pending">
+                        <div class="progress-step-icon">⚡</div>
+                        <div class="progress-step-label">Arrive bientôt</div>
+                    </div>
+                    <div class="progress-step pending">
+                        <div class="progress-step-icon">🎉</div>
+                        <div class="progress-step-label">Livrée</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delivery Time Card -->
+        <div class="card">
+            <!-- Appointment Time -->
+            <div class="delivery-time">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div class="delivery-info">
+                    <div class="delivery-label">Date de livraison</div>
+                    <div class="delivery-date">17 mars 2024</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tracking Number Card -->
+        <div class="card">
+            <!-- Tracking Number -->
+            <div class="tracking-number-section">
+                <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20" style="width: 20px; height: 20px;">
+                    <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
+                </svg>
+                <div style="flex: 1;">
+                    <div class="tracking-label">N° de suivi</div>
+                    <div class="tracking-value">TESTINSTR202406</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Address Location Confirmation Section -->
+        <h2 class="title" style="margin-top: calc(var(--spacing-base) * 8); margin-bottom: calc(var(--spacing-base) * 4);">Confirmer l'emplacement</h2>
+
+        <!-- Delivery Address Confirmation Card -->
+        <div class="card">
+            <div class="card-header">
+                <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 2C6.48 2 3.5 4.98 3.5 8.5c0 4.78 5.36 9.21 6.5 10.5 1.14-1.29 6.5-5.72 6.5-10.5C16.5 4.98 13.52 2 10 2zm0 11.5c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                </svg>
+                <span class="card-title">Adresse de livraison</span>
+                <span class="info-icon" title="Cliquez pour modifier l'adresse via le CEC">i</span>
+            </div>
+            <div class="address-text">
+                123 Main Street. Apt 202<br>
+                Montréal, QC, H2W 3R6
+            </div>
+            
+            <!-- Interactive Map -->
+            <div class="map-container">
+                <div class="map-radius-circle"></div>
+                <div class="map-pin" id="draggablePin">
+                    <div class="map-pin-icon"></div>
+                </div>
+                <div class="map-info">
+                    <strong>📍 Emplacement actuel:</strong> 123 Main Street, Apt 202<br>
+                    <span style="font-size: 10px; color: #666;">Glissez l'épingle pour ajuster (rayon de 100m)</span>
+                </div>
+            </div>
+
+            <!-- Location Confirmation -->
+            <div class="location-confirmation">
+                <div class="location-status unconfirmed" id="locationStatus">
+                    <span class="location-status-icon">⚠️</span>
+                    <span><strong>Attention:</strong> Veuillez vérifier que l'emplacement sur la carte correspond à votre adresse de livraison. Ajustez l'épingle si nécessaire, puis confirmez.</span>
+                </div>
+                <button class="confirm-location-btn" id="confirmLocationBtn">Confirmer l'emplacement</button>
+            </div>
+
+            <!-- Address Type Selector -->
+            <div class="form-group" style="margin-top: calc(var(--spacing-base) * 5);">
+                <label class="form-label">Type d'adresse</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="addressType" value="residential" checked>
+                        <span>Résidentiel</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="addressType" value="business">
+                        <span>Commercial</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Set Your Preferences Section -->
+        <h2 class="title" style="margin-top: calc(var(--spacing-base) * 8); margin-bottom: calc(var(--spacing-base) * 4);">Définir vos préférences</h2>
+
+        <!-- Delivery Instructions Card -->
+        <div class="card">
+            <div class="card-header">
+                <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10z"/>
+                </svg>
+                <span class="card-title">Instructions de livraison</span>
+            </div>
+
+            <!-- Safe Drop Options -->
+            <div class="form-group">
+                <label class="form-label">Emplacement de dépôt sécurisé</label>
+                <select class="form-input" name="safeDrop">
+                    <option value="">Sélectionnez un emplacement</option>
+                    <option value="front">Porte d'entrée</option>
+                    <option value="back">Porte arrière</option>
+                    <option value="side">Entrée latérale</option>
+                    <option value="garage">Garage</option>
+                    <option value="other">Autre</option>
+                </select>
+            </div>
+
+            <!-- Access Code -->
+            <div class="form-group">
+                <label class="form-label">Code d'entrée</label>
+                <input type="text" class="form-input" placeholder="Entrez le code d'entrée">
+            </div>
+
+            <!-- Buzzer Code -->
+            <div class="form-group">
+                <label class="form-label">Code d'interphone</label>
+                <input type="text" class="form-input" placeholder="Entrez le code d'interphone">
+            </div>
+
+            <!-- Special Instructions -->
+            <div class="form-group">
+                <label class="form-label">Instructions spéciales</label>
+                <textarea class="form-input" rows="3" placeholder="Ajoutez des instructions de livraison supplémentaires..."></textarea>
+            </div>
+
+            <!-- Business Hours (conditional) -->
+            <div class="form-group" id="businessHours" style="display: none;">
+                <label class="form-label">Heures d'ouverture</label>
+                <input type="text" class="form-input" placeholder="ex. : Lun-Ven 9h-17h">
+                <div style="margin-top: calc(var(--spacing-base) * 3);">
+                    <label class="radio-option">
+                        <input type="checkbox" name="weekendClosed">
+                        <span>Fermé le week-end</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Save for Future Toggle -->
+            <div class="toggle-group">
+                <span class="toggle-label">Enregistrer les instructions pour les livraisons futures</span>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="btn-primary">
+            <div class="btn-icon">✓</div>
+            Confirmer les instructions
+        </button>
+    </div>
+
+    <script>
+        // Show/hide business hours based on address type
+        document.querySelectorAll('input[name="addressType"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const businessHours = document.getElementById('businessHours');
+                if (this.value === 'business') {
+                    businessHours.style.display = 'block';
+                } else {
+                    businessHours.style.display = 'none';
+                }
+            });
+        });
+
+        // Location confirmation functionality
+        const draggablePin = document.getElementById('draggablePin');
+        const confirmLocationBtn = document.getElementById('confirmLocationBtn');
+        const locationStatus = document.getElementById('locationStatus');
+        let isLocationConfirmed = false;
+        let isDragging = false;
+        let startX, startY, initialX, initialY;
+
+        // Make pin draggable
+        draggablePin.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            const rect = draggablePin.parentElement.getBoundingClientRect();
+            initialX = draggablePin.offsetLeft;
+            initialY = draggablePin.offsetTop;
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            
+            const mapContainer = draggablePin.parentElement;
+            const mapRect = mapContainer.getBoundingClientRect();
+            const deltaX = e.clientX - startX;
+            const deltaY = e.clientY - startY;
+            
+            // Constrain within map bounds (considering pin size)
+            const maxX = mapRect.width - 48;
+            const maxY = mapRect.height - 56;
+            
+            let newX = initialX + deltaX;
+            let newY = initialY + deltaY;
+            
+            newX = Math.max(0, Math.min(newX, maxX));
+            newY = Math.max(0, Math.min(newY, maxY));
+            
+            draggablePin.style.left = newX + 'px';
+            draggablePin.style.top = newY + 'px';
+            draggablePin.style.transform = 'translate(0, -100%)';
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+            }
+        });
+
+        // Touch events for mobile
+        draggablePin.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            const touch = e.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            const rect = draggablePin.parentElement.getBoundingClientRect();
+            initialX = draggablePin.offsetLeft;
+            initialY = draggablePin.offsetTop;
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            
+            const touch = e.touches[0];
+            const mapContainer = draggablePin.parentElement;
+            const mapRect = mapContainer.getBoundingClientRect();
+            const deltaX = touch.clientX - startX;
+            const deltaY = touch.clientY - startY;
+            
+            const maxX = mapRect.width - 48;
+            const maxY = mapRect.height - 56;
+            
+            let newX = initialX + deltaX;
+            let newY = initialY + deltaY;
+            
+            newX = Math.max(0, Math.min(newX, maxX));
+            newY = Math.max(0, Math.min(newY, maxY));
+            
+            draggablePin.style.left = newX + 'px';
+            draggablePin.style.top = newY + 'px';
+            draggablePin.style.transform = 'translate(0, -100%)';
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchend', () => {
+            if (isDragging) {
+                isDragging = false;
+            }
+        });
+
+        // Confirm location button
+        confirmLocationBtn.addEventListener('click', () => {
+            if (!isLocationConfirmed) {
+                isLocationConfirmed = true;
+                locationStatus.className = 'location-status confirmed';
+                locationStatus.innerHTML = '<span class="location-status-icon">✅</span><span><strong>Emplacement confirmé!</strong> Votre adresse de livraison a été confirmée.</span>';
+                confirmLocationBtn.textContent = 'Emplacement confirmé';
+                confirmLocationBtn.classList.add('confirmed');
+                
+                // Show success message briefly
+                setTimeout(() => {
+                    locationStatus.style.opacity = '0.9';
+                }, 2000);
+            }
+        });
+    </script>
+
+    <!-- Chat Button -->
+    <button class="chat-button" aria-label="Ouvrir le chat">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+        </svg>
+    </button>
+</body>
+</html>
