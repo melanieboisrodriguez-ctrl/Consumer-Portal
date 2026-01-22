@@ -676,29 +676,30 @@
 
         .animated-status {
             color: white;
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 16px;
+            padding: 16px;
+            border-radius: 16px;
+            margin-bottom: 20px;
             text-align: center;
-            animation: super-excited-pulse 1.5s ease-in-out infinite;
+            animation: super-excited-pulse 1.5s ease-in-out infinite, celebration-glow 3.5s ease-in-out infinite;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+            overflow: visible;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35), 0 0 25px rgba(245, 158, 11, 0.25);
             transition: all 0.5s ease;
-            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #fcd34d 100%);
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
         @media (min-width: 375px) {
             .animated-status {
-                padding: 14px;
-                margin-bottom: 18px;
+                padding: 18px;
+                margin-bottom: 22px;
             }
         }
 
         @media (min-width: 414px) {
             .animated-status {
-                padding: 16px;
-                margin-bottom: 20px;
+                padding: 20px;
+                margin-bottom: 24px;
             }
         }
 
@@ -709,8 +710,21 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.15), transparent);
             animation: shimmer-sweep 3s infinite;
+        }
+
+        .animated-status::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 16px;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.12) 0%, transparent 70%);
+            animation: ripple-effect 2.5s ease-out infinite;
+            pointer-events: none;
         }
 
         @keyframes shimmer-sweep {
@@ -718,40 +732,74 @@
             100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
+        @keyframes ripple-effect {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+
         @keyframes super-excited-pulse {
             0%, 100% { 
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35), 0 0 25px rgba(245, 158, 11, 0.25);
                 transform: scale(1);
             }
             50% { 
-                box-shadow: 0 12px 25px rgba(245, 158, 11, 0.5);
-                transform: scale(1.03);
+                box-shadow: 0 5px 18px rgba(245, 158, 11, 0.45), 0 0 35px rgba(245, 158, 11, 0.35);
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes celebration-glow {
+            0%, 100% { 
+                filter: brightness(1) drop-shadow(0 0 6px rgba(245, 158, 11, 0.35));
+            }
+            50% { 
+                filter: brightness(1.08) drop-shadow(0 0 12px rgba(245, 158, 11, 0.5));
             }
         }
 
         .status-animation {
-            font-size: 36px;
-            margin-bottom: 10px;
-            animation: emoji-super-bounce 1s ease-in-out infinite;
+            font-size: 48px;
+            margin-bottom: 12px;
+            animation: emoji-super-bounce 1.1s ease-in-out infinite, emoji-sparkle 3.5s ease-in-out infinite;
             position: relative;
-            z-index: 1;
+            z-index: 2;
+            display: inline-block;
+            filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
         }
 
         @keyframes emoji-super-bounce {
-            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-            25% { transform: translateY(-8px) rotate(-10deg) scale(1.1); }
-            50% { transform: translateY(-10px) rotate(0deg) scale(1.2); }
-            75% { transform: translateY(-8px) rotate(10deg) scale(1.1); }
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            25% { 
+                transform: translateY(-6px) rotate(-6deg) scale(1.08);
+            }
+            50% { 
+                transform: translateY(-8px) rotate(6deg) scale(1.12);
+            }
+            75% { 
+                transform: translateY(-6px) rotate(-4deg) scale(1.08);
+            }
+        }
+
+        @keyframes emoji-sparkle {
+            0%, 100% { 
+                filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25)) brightness(1);
+            }
+            50% { 
+                filter: drop-shadow(0 4px 8px rgba(245, 158, 11, 0.5)) brightness(1.12);
+            }
         }
 
         .status-text {
             color: white;
-            font-weight: 600;
-            font-size: 16px;
+            font-weight: 700;
+            font-size: 18px;
             line-height: 1.5;
             position: relative;
-            z-index: 1;
-            letter-spacing: -0.01em;
+            z-index: 2;
+            letter-spacing: 0.02em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .countdown {
@@ -967,9 +1015,8 @@
                 </svg>
                 <div class="delivery-info">
                     <div class="delivery-label">Arrivée dans</div>
-                    <div class="delivery-hour" id="preciseEta" style="color: #f59e0b;">moins de <span id="minutesRemaining">25</span> minutes</div>
+                    <div class="delivery-hour" id="preciseEta" style="color: #f59e0b;">moins de <span id="minutesRemaining">60</span> minutes</div>
                     <div class="delivery-date">17 mars 2024</div>
-                    <div class="delivery-hour-range">11h27 - 11h57</div>
                     <div style="margin-top: 8px; display: flex; align-items: center;">
                         <span class="confidence-badge confidence-high">Confiance élevée</span>
                         <div class="confidence-explanation">
@@ -1063,9 +1110,8 @@
     </div>
 
     <script>
-        // Countdown timer with 30-minute window
-        const TIME_WINDOW_MINUTES = 30;
-        let minutesRemaining = 25; // Starting point within the 30-minute window
+        // Countdown timer
+        let minutesRemaining = 60; // Starting point
         const countdownElement = document.getElementById('countdown');
         const minutesRemainingElement = document.getElementById('minutesRemaining');
         const preciseEtaElement = document.getElementById('preciseEta');
@@ -1075,7 +1121,7 @@
                 countdownElement.textContent = `${minutesRemaining} min`;
             }
             
-            if (minutesRemaining > 0 && minutesRemaining <= TIME_WINDOW_MINUTES) {
+            if (minutesRemaining > 0) {
                 if (minutesRemainingElement) {
                     minutesRemainingElement.textContent = minutesRemaining;
                 }
@@ -1084,9 +1130,7 @@
                 }
                 
                 // Decrease by 1 minute every minute
-                if (minutesRemaining > 0) {
-                    minutesRemaining--;
-                }
+                minutesRemaining--;
             } else if (minutesRemaining <= 0) {
                 minutesRemaining = 0;
                 if (minutesRemainingElement) {
