@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail Consommateur - En route (V2 Amélioré)</title>
+    <!-- Google Fonts - Inter (Modern Typography) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Intelcom Brand Colors */
+            --primary: #00b4a6;
+            --primary-dark: #008B7D;
+            --primary-light: #00D9C8;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --warning: #fbbf24;
+            --error: #ef4444;
+            --neutral-50: #f9fafb;
+            --neutral-100: #f3f4f6;
+            --neutral-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-feature-settings: 'kern' 1, 'liga' 1;
+            letter-spacing: -0.01em;
+            background: linear-gradient(180deg, #fafbfc 0%, #f8f9fa 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+        }
+
+        /* Skip Link for Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 10000;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 10px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @media (min-width: 375px) {
+            .header {
+                padding: 12px 16px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .header {
+                padding: 16px 24px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .header {
+                padding: 20px 32px;
+            }
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Intelcom Wordmark Only */
+        .intelcom-wordmark {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            text-shadow: 0 2px 4px rgba(0, 180, 166, 0.1);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .header-separator {
+            width: 1px;
+            height: 20px;
+            background-color: #e0e0e0;
+            margin: 0 12px;
+        }
+
+        .lang-selector {
+            color: #1a1a1a;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+            padding: 0 8px;
+            letter-spacing: 0.01em;
+            transition: color 0.2s ease;
+        }
+
+        .lang-selector:hover {
+            color: var(--primary);
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #4b5563;
+            cursor: pointer;
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 8px;
+        }
+
+        .icon-btn:hover {
+            color: var(--primary);
+            background-color: var(--neutral-50);
+            transform: scale(1.05);
+        }
+
+        .icon-btn:active {
+            transform: scale(0.95);
+        }
+
+        .container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 12px;
+        }
+
+        @media (min-width: 375px) {
+            .container {
+                padding: 14px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .container {
+                max-width: 414px;
+                margin: 0 auto;
+                padding: 16px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 600px;
+                padding: 20px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 800px;
+                padding: 24px;
+            }
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 375px) {
+            .title {
+                font-size: 22px;
+                margin-bottom: 18px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Card - Enhanced with WOW transitions */
+        .card {
+            background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+            border-radius: 16px;
+            padding: 18px 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(0, 0, 0, 0.02) inset;
+            border: 1px solid rgba(229, 231, 235, 0.8);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 180, 166, 0.1) inset;
+            border-color: rgba(0, 180, 166, 0.2);
+        }
+
+        @media (min-width: 375px) {
+            .card {
+                padding: 16px 18px;
+                margin-bottom: 12px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .card {
+                padding: 18px 20px;
+                margin-bottom: 12px;
+            }
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .card-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .tracking-number-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .tracking-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #00b4a6;
+        }
+
+        .tracking-value {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-top: 4px;
+            letter-spacing: -0.01em;
+        }
+
+        /* Compact Tracking */
+        .compact-tracking {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background: linear-gradient(180deg, #f9fafb 0%, #f8f9fa 100%);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+            font-size: 12px;
+            color: #6b7280;
+            backdrop-filter: blur(4px);
+        }
+
+        .compact-tracking-icon {
+            width: 14px;
+            height: 14px;
+            color: #9ca3af;
+            flex-shrink: 0;
+        }
+
+        .compact-tracking-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .compact-tracking-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: #4b5563;
+            letter-spacing: 0.02em;
+        }
+
+        /* Brown Shoes Logo */
+        .brown-shoes-logo {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            background: linear-gradient(180deg, #f9fafb 0%, #f8f9fa 100%);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+        }
+
+        .brown-shoes-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: serif;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        }
+
+        .brown-shoes-logo-text {
+            font-weight: 600;
+            color: #4b5563;
+            font-size: 16px;
+        }
+
+        /* Delivery Time */
+        .delivery-time {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .delivery-time svg {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .delivery-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .delivery-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+        }
+
+        .delivery-date {
+            font-size: 16px;
+            font-weight: 600;
+            color: #6b7280;
+            letter-spacing: -0.01em;
+            line-height: 1.4;
+            margin-top: 2px;
+        }
+
+        .delivery-hour {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 4px;
+            letter-spacing: -0.02em;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .delivery-hour-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .delivery-hour-wrapper .delivery-hour {
+            margin-top: 0;
+        }
+
+        /* Progress Bar - Ultra Compact Text-Only Design */
+        .progress-bar-wrapper {
+            position: relative;
+            margin-bottom: 0;
+            padding: 8px 0 4px 0;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            align-items: flex-start;
+            gap: 0;
+        }
+
+        /* Single continuous progress line */
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e5e7eb;
+            z-index: 0;
+            border-radius: 1px;
+        }
+
+        /* Progress fill - single continuous line */
+        .progress-steps::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            z-index: 1;
+            border-radius: 1px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Progress width based on step */
+        .progress-steps[data-progress="1"]::after { width: 0%; }
+        .progress-steps[data-progress="2"]::after { width: 33.33%; }
+        .progress-steps[data-progress="3"]::after { width: 66.66%; }
+        .progress-steps[data-progress="4"]::after { width: 100%; }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-step-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            color: #9ca3af;
+            padding: 6px 8px;
+            border-radius: 6px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            line-height: 1.3;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            letter-spacing: -0.01em;
+        }
+
+        .progress-step.completed .progress-step-label {
+            color: var(--primary);
+            font-weight: 700;
+            background: rgba(0, 180, 166, 0.08);
+        }
+
+        .progress-step.active .progress-step-label {
+            color: white;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            box-shadow: 0 2px 8px rgba(0, 180, 166, 0.3);
+            transform: translateY(-1px);
+            animation: label-active-pulse 2s ease-in-out infinite;
+        }
+
+        .progress-step.pending .progress-step-label {
+            color: #9ca3af;
+        }
+
+        @keyframes label-active-pulse {
+            0%, 100% { 
+                transform: translateY(-1px);
+                box-shadow: 0 2px 8px rgba(0, 180, 166, 0.3);
+            }
+            50% { 
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0, 180, 166, 0.4);
+            }
+        }
+
+        /* Chat Button */
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 16px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 8px 24px rgba(0, 180, 166, 0.4), 0 4px 8px rgba(0, 180, 166, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.1) inset;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            touch-action: manipulation;
+            animation: chat-float 3s ease-in-out infinite;
+        }
+
+        @keyframes chat-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        @media (min-width: 375px) {
+            .chat-button {
+                bottom: 24px;
+                right: 20px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .chat-button {
+                bottom: 24px;
+                right: 24px;
+            }
+        }
+
+        .chat-button:hover {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            transform: scale(1.1) translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 180, 166, 0.5), 0 6px 12px rgba(0, 180, 166, 0.4), 0 0 0 3px rgba(255, 255, 255, 0.15) inset;
+            animation: none;
+        }
+
+        .chat-button:active {
+            transform: scale(1.05) translateY(0);
+            box-shadow: 0 4px 16px rgba(0, 180, 166, 0.4);
+        }
+
+        .chat-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Map Container - Realistic Street Map */
+        .map-container {
+            width: 100%;
+            height: 160px;
+            background: #f0f4f8;
+            border-radius: 8px;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #d4edda;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) inset;
+        }
+
+        /* Realistic street lines */
+        .map-street {
+            position: absolute;
+            background: #ffffff;
+            pointer-events: none;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .map-street.horizontal {
+            width: 100%;
+            height: 4px;
+        }
+
+        .map-street.vertical {
+            width: 4px;
+            height: 100%;
+        }
+
+        /* Buildings/blocks - more realistic */
+        .map-building {
+            position: absolute;
+            background: #d1d5db;
+            border-radius: 2px;
+            pointer-events: none;
+            box-shadow: 
+                0 1px 2px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        /* Building windows */
+        .map-building::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(0, 0, 0, 0.05) 4px, rgba(0, 0, 0, 0.05) 5px),
+                repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(0, 0, 0, 0.05) 4px, rgba(0, 0, 0, 0.05) 5px);
+            border-radius: 1px;
+            opacity: 0.6;
+        }
+
+        /* Address building - highlighted at center */
+        .map-address-building {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 26px;
+            height: 30px;
+            background: #ffffff;
+            border: 2.5px solid rgba(0, 180, 166, 0.6);
+            border-radius: 3px;
+            pointer-events: none;
+            z-index: 1;
+            box-shadow: 
+                0 3px 6px rgba(0, 180, 166, 0.3),
+                0 0 0 2px rgba(0, 180, 166, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        /* Address building roof */
+        .map-address-building::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -2px;
+            right: -2px;
+            height: 4px;
+            background: #9ca3af;
+            border-radius: 2px 2px 0 0;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Map pin for "on the way" - static visualization */
+        .map-pin-static {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            width: 32px;
+            height: 40px;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .map-pin-static-icon {
+            width: 36px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(0, 180, 166, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 180, 166, 0.2) inset;
+            position: relative;
+            animation: pin-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pin-pulse {
+            0%, 100% { 
+                box-shadow: 0 4px 12px rgba(0, 180, 166, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 180, 166, 0.2) inset;
+            }
+            50% { 
+                box-shadow: 0 6px 16px rgba(0, 180, 166, 0.5), 0 4px 8px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(0, 180, 166, 0.3) inset;
+            }
+        }
+
+        .map-pin-static-icon::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .info-item {
+            flex: 1;
+        }
+
+        .info-label {
+            color: #999;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .confidence-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .confidence-high {
+            background: rgba(16, 185, 129, 0.1);
+            color: #065f46;
+        }
+
+        .confidence-medium {
+            background: rgba(245, 158, 11, 0.1);
+            color: #d97706;
+        }
+
+        .confidence-explanation {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            margin-left: 6px;
+        }
+
+        .confidence-info-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #6b7280;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+            cursor: help;
+            transition: background-color 0.2s ease;
+        }
+
+        .confidence-info-icon:hover {
+            background-color: #4b5563;
+        }
+
+        /* Info Icon */
+        .info-icon {
+            width: 16px;
+            height: 16px;
+            background-color: #999;
+            border-radius: 50%;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            margin-left: 8px;
+            cursor: help;
+            transition: background-color 0.2s ease;
+        }
+
+        .info-icon:hover {
+            background-color: #4b5563;
+        }
+
+        /* Support Link */
+        .support-link {
+            color: var(--primary);
+            text-decoration: underline;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .support-link:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Toggle - WOW Design */
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            background: linear-gradient(180deg, #f9fafb 0%, #f8f9fa 100%);
+            border-radius: 12px;
+            margin-top: 10px;
+            border: 2px solid rgba(229, 231, 235, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+        }
+
+        .toggle-group:hover {
+            border-color: rgba(0, 180, 166, 0.3);
+            box-shadow: 0 2px 4px rgba(0, 180, 166, 0.05);
+        }
+
+        /* Special style for "Save for future" toggle - WOW Design */
+        .toggle-group.save-for-future {
+            background: linear-gradient(135deg, #f0fdfc 0%, #e6fffa 50%, #f0fdfc 100%);
+            background-size: 200% 100%;
+            border: 2px solid var(--primary);
+            box-shadow: 0 4px 12px rgba(0, 180, 166, 0.15), 0 2px 4px rgba(0, 180, 166, 0.1);
+            padding: 16px 18px;
+            margin-top: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .toggle-group.save-for-future::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 180, 166, 0.1) 0%, transparent 70%);
+            animation: subtle-shimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes subtle-shimmer {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(20px, 20px) rotate(180deg); }
+        }
+
+        .toggle-group.save-for-future:hover {
+            border-color: var(--primary-dark);
+            box-shadow: 0 6px 16px rgba(0, 180, 166, 0.2), 0 3px 6px rgba(0, 180, 166, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .toggle-label {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .toggle-group.save-for-future .toggle-label {
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .toggle-group.save-for-future .toggle-label::before {
+            content: '⭐';
+            font-size: 18px;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, #d1d5db 0%, #9ca3af 100%);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 26px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) inset;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        input:checked + .slider {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            box-shadow: 0 2px 8px rgba(0, 180, 166, 0.3), 0 0 0 2px rgba(0, 180, 166, 0.1) inset;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Enhanced toggle switch for save-for-future */
+        .toggle-group.save-for-future input:checked + .slider {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+            box-shadow: 0 4px 12px rgba(0, 180, 166, 0.4), 0 2px 4px rgba(0, 180, 166, 0.3), 0 0 0 3px rgba(0, 180, 166, 0.15) inset;
+        }
+
+        .toggle-group.save-for-future input:checked + .slider:before {
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Commitments Section - WOW Design */
+        .commitments-card {
+            background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+            border-radius: 16px;
+            padding: 20px 22px;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(0, 0, 0, 0.02) inset;
+            border: 1px solid rgba(229, 231, 235, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .commitments-card:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(0, 180, 166, 0.1) inset;
+        }
+
+        .commitments-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1a1a1a 0%, #4b5563 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .commitment-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .commitment-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .commitment-item svg {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .commitment-item strong {
+            display: block;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .commitment-item p {
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .confidence-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 8px;
+            padding: 10px 12px;
+            background-color: #1f2937;
+            color: white;
+            border-radius: 6px;
+            font-size: 12px;
+            line-height: 1.4;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            pointer-events: none;
+        }
+
+        .confidence-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+        }
+
+        .confidence-explanation:hover .confidence-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Address Text */
+        .address-text {
+            color: #1a1a1a;
+            font-size: 14px;
+            margin-top: 8px;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+        }
+
+        /* Address Badge */
+        .address-badge {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-residential {
+            background: rgba(0, 180, 166, 0.1);
+            color: var(--primary);
+        }
+
+        .badge-business {
+            background: rgba(33, 150, 243, 0.1);
+            color: #2196f3;
+        }
+
+        /* CTA Primary - Enhanced */
+        .cta-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 16px 24px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 180, 166, 0.3), 0 2px 4px rgba(0, 180, 166, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: -0.01em;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-primary:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .cta-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-primary:hover::after {
+            left: 100%;
+        }
+
+        .cta-primary:hover {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 180, 166, 0.4), 0 4px 8px rgba(0, 180, 166, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+        }
+
+        .cta-primary:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 2px 8px rgba(0, 180, 166, 0.3);
+        }
+
+        .cta-primary:focus {
+            outline: 3px solid rgba(0, 180, 166, 0.3);
+            outline-offset: 2px;
+        }
+
+        .btn-icon {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        /* CTA Secondary - WOW Design */
+        .cta-secondary {
+            background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 14px 22px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 12px;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0, 180, 166, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 180, 166, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-secondary:hover::before {
+            left: 100%;
+        }
+
+        .cta-secondary:hover {
+            background: linear-gradient(180deg, #f0fdfc 0%, #e6fffa 100%);
+            border-color: var(--primary-dark);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 180, 166, 0.2), 0 2px 4px rgba(0, 180, 166, 0.15);
+        }
+
+        .cta-secondary:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 180, 166, 0.1);
+        }
+
+        /* Refresh Button */
+        .refresh-btn {
+            background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 10px;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .refresh-btn:hover {
+            background: linear-gradient(180deg, #f0fdfc 0%, #e6fffa 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 180, 166, 0.15);
+        }
+
+        .refresh-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Animated Status - Enhanced (On the Way - Blue/Turquoise) */
+        .animated-status {
+            color: white;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: message-glow 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 180, 166, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        }
+
+        @keyframes message-glow {
+            0%, 100% { 
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 8px 15px rgba(0, 180, 166, 0.3);
+                transform: scale(1.01);
+            }
+        }
+
+        .status-animation {
+            font-size: 36px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .status-animation svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .status-text {
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.01em;
+        }
+
+        .status-text > div:first-child {
+            line-height: 1.2;
+        }
+
+        .status-text > div:last-child {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            margin-top: 6px;
+        }
+
+        /* Instructions Display */
+        .instructions-display {
+            margin-bottom: 16px;
+        }
+
+        .instructions-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .instructions-item:last-child {
+            border-bottom: none;
+        }
+
+        .instructions-label {
+            font-size: 13px;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .instructions-value {
+            font-size: 13px;
+            color: #1a1a1a;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--success);
+            font-size: 10px;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .delivery-time-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            gap: 8px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                opacity: 1; 
+                transform: scale(1); 
+            }
+            50% { 
+                opacity: 0.5; 
+                transform: scale(1.2); 
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <!-- Header with Intelcom Logo -->
+    <div class="header" role="banner">
+        <div class="logo-container">
+            <div class="intelcom-wordmark">intelcom</div>
+        </div>
+        <div class="header-right">
+            <span class="lang-selector" role="button" tabindex="0" aria-label="Sélecteur de langue">FR</span>
+            <div class="header-separator" aria-hidden="true"></div>
+            <button class="icon-btn" aria-label="Rechercher">🔍</button>
+            <div class="header-separator" aria-hidden="true"></div>
+            <button class="icon-btn" aria-label="Notifications">🔔</button>
+            <div class="header-separator" aria-hidden="true"></div>
+            <button class="icon-btn" aria-label="Menu">☰</button>
+        </div>
+    </div>
+
+    <div class="container" id="main-content">
+        <!-- Compact Tracking Number -->
+        <div class="compact-tracking">
+            <svg class="compact-tracking-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
+            </svg>
+            <span class="compact-tracking-label">N° de suivi:</span>
+            <span class="compact-tracking-value">TESTINSTR202406</span>
+        </div>
+
+        <!-- Brown Shoes Logo -->
+        <div class="brown-shoes-logo">
+            <div class="brown-shoes-logo-icon">B</div>
+            <div class="brown-shoes-logo-text">Brown Shoes</div>
+        </div>
+
+        <!-- Animated Status -->
+        <div class="animated-status" role="status" aria-live="polite">
+            <div class="status-animation">
+                <!-- Icône Camion de Livraison avec Lignes de Mouvement (Icon 15) -->
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <!-- Lignes de mouvement -->
+                    <line x1="2" y1="8" x2="4" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+                    <line x1="2" y1="10" x2="4" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+                    <!-- Camion de livraison -->
+                    <rect x="4" y="6" width="12" height="8" rx="1" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+                    <rect x="6" y="9" width="3" height="3" rx="0.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    <rect x="10" y="9" width="3" height="3" rx="0.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    <!-- Cabine -->
+                    <rect x="16" y="8" width="4" height="6" rx="0.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+                    <circle cx="6" cy="16" r="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <circle cx="18" cy="16" r="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                </svg>
+            </div>
+            <div class="status-text">
+                <div style="line-height: 1.2;">Ta commande est en route !</div>
+                <div style="font-size: 12px; color: rgba(255,255,255,0.9); font-weight: 400; margin-top: 6px;">Notre livreur est en chemin vers toi, reste connecté !</div>
+            </div>
+        </div>
+
+        <!-- Progress Bar Card -->
+        <div class="card progress-bar-card" style="padding: 14px 16px;">
+            <div class="progress-bar-wrapper">
+                <div class="progress-steps" data-progress="2">
+                    <div class="progress-step completed">
+                        <div class="progress-step-label">Planifiée</div>
+                    </div>
+                    <div class="progress-step active">
+                        <div class="progress-step-label">En route</div>
+                    </div>
+                    <div class="progress-step pending">
+                        <div class="progress-step-label">Arrive bientôt</div>
+                    </div>
+                    <div class="progress-step pending">
+                        <div class="progress-step-label">Livrée</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delivery Time Card -->
+        <div class="card" style="padding: 14px 16px;">
+            <div class="delivery-time">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div class="delivery-info" style="flex: 1;">
+                    <div class="delivery-time-header">
+                        <div class="delivery-label">Heure de livraison</div>
+                        <span class="live-indicator">
+                            <span class="live-dot"></span>
+                            En direct
+                        </span>
+                    </div>
+                    <div class="delivery-date">17 mars 2024</div>
+                    <div class="delivery-hour-wrapper">
+                        <span class="delivery-hour">11h27 - 15h27</span>
+                        <span class="confidence-badge confidence-medium">Confiance moyenne</span>
+                        <div class="confidence-explanation">
+                            <span class="confidence-info-icon">i</span>
+                            <div class="confidence-tooltip">Le niveau de confiance indique la précision estimée de l'heure de livraison basée sur les données historiques et les conditions actuelles.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="refresh-btn" style="margin-top: 12px;">
+                🔄 Actualiser le suivi
+            </button>
+        </div>
+
+
+        <!-- Delivery Address Card -->
+        <div class="card">
+            <div class="card-header">
+                <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M10 2C6.48 2 3.5 4.98 3.5 8.5c0 4.78 5.36 9.21 6.5 10.5 1.14-1.29 6.5-5.72 6.5-10.5C16.5 4.98 13.52 2 10 2zm0 11.5c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                </svg>
+                <span class="card-title">Adresse de livraison <span style="font-size: 12px; font-weight: 400; color: #6b7280;">(non modifiable)</span></span>
+                <span class="info-icon" title="Pour modifier l'adresse, contactez le Support client" aria-label="Information sur l'adresse">i</span>
+            </div>
+            <div class="address-text" style="font-size: 14px; line-height: 1.6; color: #1a1a1a; margin-top: 6px;">
+                123 Main Street. Apt 202<br>
+                Montréal, QC, H2W 3R6
+            </div>
+            <span class="address-badge badge-residential">Résidentiel</span>
+            
+            <!-- Interactive Map - Realistic Street View (Read-only visualization) -->
+            <div style="margin-top: 12px; margin-bottom: 10px; font-size: 12px; color: #6b7280; line-height: 1.5;">
+                L'emplacement sur la carte ne correspond pas à votre adresse ? Contacter le <a href="mailto:support@intelcom.ca" class="support-link" target="_blank">support client</a>.
+            </div>
+            
+            <!-- Interactive Map - Realistic Street View (Read-only visualization) -->
+            <div class="map-container" style="margin-top: 12px;">
+                <!-- Realistic streets (white roads with yellow center lines) -->
+                <div class="map-street horizontal" style="top: 25%; left: 0;"></div>
+                <div class="map-street horizontal" style="top: 50%; left: 0;"></div>
+                <div class="map-street horizontal" style="top: 75%; left: 0;"></div>
+                <div class="map-street vertical" style="top: 0; left: 25%;"></div>
+                <div class="map-street vertical" style="top: 0; left: 50%;"></div>
+                <div class="map-street vertical" style="top: 0; left: 75%;"></div>
+                
+                <!-- Yellow center lines on streets -->
+                <div style="position: absolute; top: 25%; left: 0; width: 100%; height: 1px; background: repeating-linear-gradient(90deg, #fbbf24 0%, #fbbf24 8px, transparent 8px, transparent 16px); pointer-events: none;"></div>
+                <div style="position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: repeating-linear-gradient(90deg, #fbbf24 0%, #fbbf24 8px, transparent 8px, transparent 16px); pointer-events: none;"></div>
+                <div style="position: absolute; top: 75%; left: 0; width: 100%; height: 1px; background: repeating-linear-gradient(90deg, #fbbf24 0%, #fbbf24 8px, transparent 8px, transparent 16px); pointer-events: none;"></div>
+                <div style="position: absolute; top: 0; left: 25%; width: 1px; height: 100%; background: repeating-linear-gradient(0deg, #fbbf24 0%, #fbbf24 8px, transparent 8px, transparent 16px); pointer-events: none;"></div>
+                <div style="position: absolute; top: 0; left: 50%; width: 1px; height: 100%; background: repeating-linear-gradient(0deg, #fbbf24 0%, #fbbf24 8px, transparent 8px, transparent 16px); pointer-events: none;"></div>
+                <div style="position: absolute; top: 0; left: 75%; width: 1px; height: 100%; background: repeating-linear-gradient(0deg, #fbbf24 0%, #fbbf24 8px, transparent 8px, transparent 16px); pointer-events: none;"></div>
+                
+                <!-- Street labels -->
+                <div style="position: absolute; top: 3px; left: 3px; font-size: 8px; color: #1f2937; font-weight: 700; pointer-events: none; background: rgba(255,255,255,0.9); padding: 2px 4px; border-radius: 3px; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">Rue Main</div>
+                <div style="position: absolute; top: 3px; left: 50%; transform: translateX(-50%); font-size: 8px; color: #1f2937; font-weight: 700; pointer-events: none; background: rgba(255,255,255,0.9); padding: 2px 4px; border-radius: 3px; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">Rue Oak</div>
+                <div style="position: absolute; bottom: 3px; left: 3px; font-size: 8px; color: #1f2937; font-weight: 700; pointer-events: none; background: rgba(255,255,255,0.9); padding: 2px 4px; border-radius: 3px; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">Av. Maple</div>
+                <div style="position: absolute; top: 50%; right: 3px; transform: translateY(-50%) rotate(90deg); transform-origin: center; font-size: 8px; color: #1f2937; font-weight: 700; pointer-events: none; background: rgba(255,255,255,0.9); padding: 2px 4px; border-radius: 3px; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">Av. Pine</div>
+                
+                <!-- Realistic buildings around the center -->
+                <div class="map-building" style="top: 5%; left: 5%; width: 22px; height: 28px;"></div>
+                <div class="map-building" style="top: 5%; left: 30%; width: 24px; height: 22px;"></div>
+                <div class="map-building" style="top: 5%; right: 10%; width: 20px; height: 30px;"></div>
+                <div class="map-building" style="top: 30%; left: 10%; width: 26px; height: 24px;"></div>
+                <div class="map-building" style="top: 30%; right: 15%; width: 22px; height: 28px;"></div>
+                <div class="map-building" style="bottom: 10%; left: 5%; width: 24px; height: 22px;"></div>
+                <div class="map-building" style="bottom: 10%; left: 35%; width: 20px; height: 30px;"></div>
+                <div class="map-building" style="bottom: 10%; right: 5%; width: 26px; height: 24px;"></div>
+                
+                <!-- Address building - highlighted at center (123 Main St) -->
+                <div class="map-address-building"></div>
+                
+                <!-- Static pin for visualization (not draggable) -->
+                <div class="map-pin-static" aria-label="Emplacement de livraison">
+                    <div class="map-pin-static-icon"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delivery Instructions Card -->
+        <div class="card">
+            <div class="card-header">
+                <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10z"/>
+                </svg>
+                <span class="card-title">Instructions de livraison</span>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border: 2px solid #fbbf24; border-radius: 10px; padding: 12px 14px; margin-bottom: 16px; box-shadow: 0 2px 4px rgba(251, 191, 36, 0.1);">
+                <span style="color: #92400e; font-size: 13px; font-weight: 600;">Rappel: Vous pouvez toujours ajouter ou modifier vos instructions de livraison</span>
+            </div>
+
+            <!-- Current Instructions Display -->
+            <div class="instructions-display">
+                <div class="instructions-item">
+                    <span class="instructions-label">Type d'adresse</span>
+                    <span class="instructions-value">Résidentiel</span>
+                </div>
+                <div class="instructions-item">
+                    <span class="instructions-label">Emplacement de dépôt</span>
+                    <span class="instructions-value">Porte d'entrée</span>
+                </div>
+                <div class="instructions-item">
+                    <span class="instructions-label">Code d'entrée</span>
+                    <span class="instructions-value">1234</span>
+                </div>
+                <div class="instructions-item">
+                    <span class="instructions-label">Code d'interphone</span>
+                    <span class="instructions-value">202</span>
+                </div>
+                <div class="instructions-item">
+                    <span class="instructions-label">Instructions spéciales</span>
+                    <span class="instructions-value">Laisser à la porte si pas de réponse</span>
+                </div>
+            </div>
+
+            <button class="cta-secondary" style="width: 100%; margin-top: 15px;">
+                ✏️ Modifier les instructions
+            </button>
+        </div>
+
+        <!-- Save for Future Toggle - Enhanced WOW Design -->
+        <div class="toggle-group save-for-future">
+            <span class="toggle-label">Enregistrer ces instructions pour les futures livraisons</span>
+            <label class="toggle-switch">
+                <input type="checkbox" aria-label="Enregistrer les instructions pour les livraisons futures">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <script>
+        // Simulate live updates
+        setInterval(() => {
+            const timeValue = document.querySelector('.info-value');
+            if (timeValue) {
+                // Simulate time update animation
+                timeValue.style.transition = 'opacity 0.3s';
+                timeValue.style.opacity = '0.7';
+                setTimeout(() => {
+                    timeValue.style.opacity = '1';
+                }, 300);
+            }
+        }, 5000);
+    </script>
+
+    <!-- Chat Button -->
+    <button class="chat-button" aria-label="Ouvrir le chat">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+        </svg>
+    </button>
+</body>
+</html>

@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail Consommateur - Planifié (V2 Amélioré)</title>
+    <!-- Google Fonts - Inter (Modern Typography) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Intelcom Brand Colors */
+            --primary: #00b4a6;
+            --primary-dark: #008B7D;
+            --primary-light: #00D9C8;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --warning: #fbbf24;
+            --error: #ef4444;
+            --neutral-50: #f9fafb;
+            --neutral-100: #f3f4f6;
+            --neutral-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-feature-settings: 'kern' 1, 'liga' 1;
+            letter-spacing: -0.01em;
+            background: linear-gradient(180deg, #fafbfc 0%, #f8f9fa 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+        }
+
+        /* Skip Link for Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 10000;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 10px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @media (min-width: 375px) {
+            .header {
+                padding: 12px 16px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .header {
+                padding: 16px 24px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .header {
+                padding: 20px 32px;
+            }
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-logo {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Intelcom Wordmark Only */
+        .intelcom-wordmark {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            text-shadow: 0 2px 4px rgba(0, 180, 166, 0.1);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .header-separator {
+            width: 1px;
+            height: 20px;
+            background-color: #e0e0e0;
+            margin: 0 12px;
+        }
+
+        .lang-selector {
+            color: #1a1a1a;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+            padding: 0 8px;
+            letter-spacing: 0.01em;
+            transition: color 0.2s ease;
+        }
+
+        .lang-selector:hover {
+            color: var(--primary);
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #4b5563;
+            cursor: pointer;
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 8px;
+        }
+
+        .icon-btn:hover {
+            color: var(--primary);
+            background-color: var(--neutral-50);
+            transform: scale(1.05);
+        }
+
+        .icon-btn:active {
+            transform: scale(0.95);
+        }
+
+        .container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 12px;
+        }
+
+        @media (min-width: 375px) {
+            .container {
+                padding: 14px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .container {
+                max-width: 414px;
+                margin: 0 auto;
+                padding: 16px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 600px;
+                padding: 20px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 800px;
+                padding: 24px;
+            }
+        }
+
+        /* Greeting Card - Personalized - WOW Design */
+        .greeting-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 20px 22px;
+            border-radius: 16px;
+            margin-bottom: 14px;
+            box-shadow: 0 8px 24px rgba(0, 180, 166, 0.25), 0 4px 8px rgba(0, 180, 166, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .greeting-card:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 12px 32px rgba(0, 180, 166, 0.35), 0 6px 12px rgba(0, 180, 166, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+        }
+
+        .greeting-card h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.03em;
+            line-height: 1.3;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .greeting-card p {
+            font-size: 15px;
+            opacity: 0.98;
+            font-weight: 400;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .greeting-text strong {
+            font-weight: 700;
+        }
+
+        /* Compact Tracking */
+        .compact-tracking {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background: linear-gradient(180deg, #f9fafb 0%, #f8f9fa 100%);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+            font-size: 12px;
+            color: #6b7280;
+            backdrop-filter: blur(4px);
+        }
+
+        .compact-tracking-icon {
+            width: 14px;
+            height: 14px;
+            color: #9ca3af;
+            flex-shrink: 0;
+        }
+
+        .compact-tracking-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .compact-tracking-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: #4b5563;
+            letter-spacing: 0.02em;
+        }
+
+        /* Brown Shoes Logo */
+        .brown-shoes-logo {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            background: linear-gradient(180deg, #f9fafb 0%, #f8f9fa 100%);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+        }
+
+        .brown-shoes-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: serif;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        }
+
+        .brown-shoes-logo-text {
+            font-weight: 600;
+            color: #4b5563;
+            font-size: 16px;
+        }
+
+        /* Animated Status - Enhanced */
+        .animated-status {
+            color: white;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: message-glow 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+        }
+
+
+        @keyframes message-glow {
+            0%, 100% { 
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 8px 15px rgba(13, 148, 136, 0.3);
+                transform: scale(1.01);
+            }
+        }
+
+        .status-animation {
+            font-size: 36px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .status-text {
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.01em;
+        }
+
+        /* Card - Enhanced with WOW transitions */
+        .card {
+            background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+            border-radius: 16px;
+            padding: 18px 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(0, 0, 0, 0.02) inset;
+            border: 1px solid rgba(229, 231, 235, 0.8);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 180, 166, 0.1) inset;
+            border-color: rgba(0, 180, 166, 0.2);
+        }
+
+        @media (min-width: 375px) {
+            .card {
+                padding: 16px 18px;
+                margin-bottom: 12px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .card {
+                padding: 18px 20px;
+                margin-bottom: 12px;
+            }
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .card-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        /* Progress Bar - Ultra Compact Text-Only Design */
+        .progress-bar-wrapper {
+            position: relative;
+            margin-bottom: 0;
+            padding: 8px 0 4px 0;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            align-items: flex-start;
+            gap: 0;
+        }
+
+        /* Single continuous progress line */
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e5e7eb;
+            z-index: 0;
+            border-radius: 1px;
+        }
+
+        /* Progress fill - single continuous line */
+        .progress-steps::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            z-index: 1;
+            border-radius: 1px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Progress width based on step */
+        .progress-steps[data-progress="1"]::after { width: 0%; }
+        .progress-steps[data-progress="2"]::after { width: 33.33%; }
+        .progress-steps[data-progress="3"]::after { width: 66.66%; }
+        .progress-steps[data-progress="4"]::after { width: 100%; }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-step-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            color: #9ca3af;
+            padding: 6px 8px;
+            border-radius: 6px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            line-height: 1.3;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            letter-spacing: -0.01em;
+        }
+
+        .progress-step.completed .progress-step-label {
+            color: var(--primary);
+            font-weight: 700;
+            background: rgba(0, 180, 166, 0.08);
+        }
+
+        .progress-step.active .progress-step-label {
+            color: white;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            box-shadow: 0 2px 8px rgba(0, 180, 166, 0.3);
+            transform: translateY(-1px);
+            animation: label-active-pulse 2s ease-in-out infinite;
+        }
+
+        .progress-step.pending .progress-step-label {
+            color: #9ca3af;
+        }
+
+        @keyframes label-active-pulse {
+            0%, 100% { 
+                transform: translateY(-1px);
+                box-shadow: 0 2px 8px rgba(0, 180, 166, 0.3);
+            }
+            50% { 
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0, 180, 166, 0.4);
+            }
+        }
+
+        /* Delivery Time */
+        .delivery-time {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .delivery-time svg {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .delivery-time svg {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .delivery-info {
+            flex: 1;
+        }
+
+        .delivery-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .delivery-date {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.02em;
+            line-height: 1.4;
+        }
+
+        /* CTA Primary - Enhanced */
+        .cta-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 16px 24px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 180, 166, 0.3), 0 2px 4px rgba(0, 180, 166, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: -0.01em;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-primary:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .cta-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-primary:hover::after {
+            left: 100%;
+        }
+
+        .cta-primary:hover {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 180, 166, 0.4), 0 4px 8px rgba(0, 180, 166, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+        }
+
+        .cta-primary:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 2px 8px rgba(0, 180, 166, 0.3);
+        }
+
+        .cta-primary:focus {
+            outline: 3px solid rgba(0, 180, 166, 0.3);
+            outline-offset: 2px;
+        }
+
+        /* CTA Secondary - WOW Design */
+        .cta-secondary {
+            background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 14px 22px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 12px;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0, 180, 166, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 180, 166, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-secondary:hover::before {
+            left: 100%;
+        }
+
+        .cta-secondary:hover {
+            background: linear-gradient(180deg, #f0fdfc 0%, #e6fffa 100%);
+            border-color: var(--primary-dark);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 180, 166, 0.2), 0 2px 4px rgba(0, 180, 166, 0.15);
+        }
+
+        .cta-secondary:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 180, 166, 0.1);
+        }
+
+        /* Feedback Message */
+        .feedback-message {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            animation: slideIn 0.3s ease;
+        }
+
+        .feedback-message.success {
+            background: #d1fae5;
+            border: 1px solid var(--success);
+            color: #065f46;
+        }
+
+        .feedback-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .feedback-content strong {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Map Container - Realistic Street Map */
+        .map-container {
+            width: 100%;
+            height: 160px;
+            background: #f0f4f8;
+            border-radius: 8px;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #d4edda;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) inset;
+        }
+
+
+        /* Realistic street lines */
+        .map-street {
+            position: absolute;
+            background: #ffffff;
+            pointer-events: none;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .map-street.horizontal {
+            width: 100%;
+            height: 4px;
+        }
+
+        .map-street.vertical {
+            width: 4px;
+            height: 100%;
+        }
+
+        /* Buildings/blocks - more realistic */
+        .map-building {
+            position: absolute;
+            background: #d1d5db;
+            border-radius: 2px;
+            pointer-events: none;
+            box-shadow: 
+                0 1px 2px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        /* Building windows */
+        .map-building::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(0, 0, 0, 0.05) 4px, rgba(0, 0, 0, 0.05) 5px),
+                repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(0, 0, 0, 0.05) 4px, rgba(0, 0, 0, 0.05) 5px);
+            border-radius: 1px;
+            opacity: 0.6;
+        }
+
+        /* Address building - highlighted at center */
+        .map-address-building {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 26px;
+            height: 30px;
+            background: #ffffff;
+            border: 2.5px solid rgba(0, 180, 166, 0.6);
+            border-radius: 3px;
+            pointer-events: none;
+            z-index: 1;
+            box-shadow: 
+                0 3px 6px rgba(0, 180, 166, 0.3),
+                0 0 0 2px rgba(0, 180, 166, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        /* Address building roof */
+        .map-address-building::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -2px;
+            right: -2px;
+            height: 4px;
+            background: #9ca3af;
+            border-radius: 2px 2px 0 0;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .map-pin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            width: 32px;
+            height: 40px;
+            cursor: move;
+            z-index: 10;
+            transition: transform 0.2s ease;
+        }
+
+        .map-pin:active {
+            transform: translate(-50%, -100%) scale(1.1);
+        }
+
+        .map-pin-icon {
+            width: 36px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(0, 180, 166, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 180, 166, 0.2) inset;
+            position: relative;
+            animation: pin-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pin-pulse {
+            0%, 100% { 
+                box-shadow: 0 4px 12px rgba(0, 180, 166, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 180, 166, 0.2) inset;
+            }
+            50% { 
+                box-shadow: 0 6px 16px rgba(0, 180, 166, 0.5), 0 4px 8px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(0, 180, 166, 0.3) inset;
+            }
+        }
+
+        .map-pin-icon::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        /* Original pin position (red) - fixed at center */
+        .map-pin-original {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            width: 32px;
+            height: 40px;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .map-pin-original-icon {
+            width: 32px;
+            height: 40px;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            border: 2px solid white;
+            box-shadow: 0 3px 8px rgba(239, 68, 68, 0.4), 0 1px 3px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .map-pin-original-icon::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .map-radius-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 145px;
+            height: 145px;
+            border: 2.5px dashed rgba(0, 180, 166, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: radius-pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 0 0 rgba(0, 180, 166, 0.3);
+        }
+
+        @keyframes radius-pulse {
+            0% {
+                border-color: rgba(0, 180, 166, 0.5);
+                box-shadow: 0 0 0 0 rgba(0, 180, 166, 0.3);
+            }
+            50% {
+                border-color: rgba(0, 180, 166, 0.7);
+                box-shadow: 0 0 0 4px rgba(0, 180, 166, 0.1);
+            }
+            100% {
+                border-color: rgba(0, 180, 166, 0.5);
+                box-shadow: 0 0 0 0 rgba(0, 180, 166, 0.3);
+            }
+        }
+
+        /* Location Status - WOW Design */
+        .location-status {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px 14px;
+            background: linear-gradient(180deg, #f9fafb 0%, #f8f9fa 100%);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            font-size: 12.5px;
+            line-height: 1.35;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+        }
+
+        .location-status span:not(.location-status-icon) {
+            flex: 1;
+            min-width: 0;
+            display: block;
+        }
+
+        .location-status.unconfirmed {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #fbbf24;
+            color: #92400e;
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.2), 0 2px 4px rgba(251, 191, 36, 0.1);
+        }
+
+        .location-status.confirmed {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border: 2px solid var(--success);
+            color: #065f46;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2), 0 2px 4px rgba(16, 185, 129, 0.1);
+        }
+
+        .location-status.error {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border: 2px solid #ef4444;
+            color: #991b1b;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2), 0 2px 4px rgba(239, 68, 68, 0.1);
+        }
+
+        .location-status-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 6px;
+            display: block;
+            letter-spacing: -0.01em;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 14px;
+            background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) inset;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 180, 166, 0.1), 0 2px 4px rgba(0, 180, 166, 0.05) inset;
+            background: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+        }
+
+        .radio-option:hover {
+            border-color: var(--primary);
+            background: linear-gradient(180deg, #f0fdfc 0%, #e6fffa 100%);
+            transform: translateX(3px) translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 180, 166, 0.15), 0 2px 4px rgba(0, 180, 166, 0.1);
+        }
+
+        .radio-option:active {
+            transform: translateX(1px) translateY(0);
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 12px;
+            accent-color: var(--primary);
+        }
+
+        /* Step Indicator */
+        .step-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 700;
+            box-shadow: 0 2px 6px rgba(0, 180, 166, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        }
+
+        .step-indicator.completed .step-number {
+            background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
+            box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        }
+
+        .step-indicator.completed {
+            color: var(--success);
+        }
+
+        /* Commitments Section - WOW Design */
+        .commitments-card {
+            background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+            border-radius: 16px;
+            padding: 20px 22px;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(0, 0, 0, 0.02) inset;
+            border: 1px solid rgba(229, 231, 235, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .commitments-card:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(0, 180, 166, 0.1) inset;
+        }
+
+        .commitments-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1a1a1a 0%, #4b5563 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .commitment-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .commitment-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .commitment-item svg {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .commitment-item strong {
+            display: block;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .commitment-item p {
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        /* Chat Button */
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 16px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 8px 24px rgba(0, 180, 166, 0.4), 0 4px 8px rgba(0, 180, 166, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.1) inset;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            touch-action: manipulation;
+            animation: chat-float 3s ease-in-out infinite;
+        }
+
+        @keyframes chat-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        @media (min-width: 375px) {
+            .chat-button {
+                bottom: 24px;
+                right: 20px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .chat-button {
+                bottom: 24px;
+                right: 24px;
+            }
+        }
+
+        .chat-button:hover {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            transform: scale(1.1) translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 180, 166, 0.5), 0 6px 12px rgba(0, 180, 166, 0.4), 0 0 0 3px rgba(255, 255, 255, 0.15) inset;
+            animation: none;
+        }
+
+        .chat-button:active {
+            transform: scale(1.05) translateY(0);
+            box-shadow: 0 4px 16px rgba(0, 180, 166, 0.4);
+        }
+
+        .chat-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Title */
+        .title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            margin-top: 24px;
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+        }
+
+        @media (min-width: 375px) {
+            .title {
+                font-size: 21px;
+                margin-bottom: 14px;
+                margin-top: 28px;
+            }
+        }
+
+        @media (min-width: 414px) {
+            .title {
+                font-size: 22px;
+                margin-bottom: 16px;
+                margin-top: 32px;
+            }
+        }
+
+        /* Address Text */
+        .address-text {
+            color: #1a1a1a;
+            font-size: 14px;
+            margin-top: 8px;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+        }
+
+        .support-link {
+            color: var(--primary);
+            text-decoration: underline;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .support-link:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Toggle - WOW Design */
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            background: linear-gradient(180deg, #f9fafb 0%, #f8f9fa 100%);
+            border-radius: 12px;
+            margin-top: 10px;
+            border: 2px solid rgba(229, 231, 235, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+        }
+
+        .toggle-group:hover {
+            border-color: rgba(0, 180, 166, 0.3);
+            box-shadow: 0 2px 4px rgba(0, 180, 166, 0.05);
+        }
+
+        /* Special style for "Save for future" toggle - WOW Design */
+        .toggle-group.save-for-future {
+            background: linear-gradient(135deg, #f0fdfc 0%, #e6fffa 50%, #f0fdfc 100%);
+            background-size: 200% 100%;
+            border: 2px solid var(--primary);
+            box-shadow: 0 4px 12px rgba(0, 180, 166, 0.15), 0 2px 4px rgba(0, 180, 166, 0.1);
+            padding: 16px 18px;
+            margin-top: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .toggle-group.save-for-future::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 180, 166, 0.1) 0%, transparent 70%);
+            animation: subtle-shimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes subtle-shimmer {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(20px, 20px) rotate(180deg); }
+        }
+
+        .toggle-group.save-for-future:hover {
+            border-color: var(--primary-dark);
+            box-shadow: 0 6px 16px rgba(0, 180, 166, 0.2), 0 3px 6px rgba(0, 180, 166, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .toggle-label {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .toggle-group.save-for-future .toggle-label {
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .toggle-group.save-for-future .toggle-label::before {
+            content: '⭐';
+            font-size: 18px;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, #d1d5db 0%, #9ca3af 100%);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 26px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) inset;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        input:checked + .slider {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            box-shadow: 0 2px 8px rgba(0, 180, 166, 0.3), 0 0 0 2px rgba(0, 180, 166, 0.1) inset;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Enhanced toggle switch for save-for-future */
+        .toggle-group.save-for-future input:checked + .slider {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+            box-shadow: 0 4px 12px rgba(0, 180, 166, 0.4), 0 2px 4px rgba(0, 180, 166, 0.3), 0 0 0 3px rgba(0, 180, 166, 0.15) inset;
+        }
+
+        .toggle-group.save-for-future input:checked + .slider:before {
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Info Icon */
+        .info-icon {
+            width: 16px;
+            height: 16px;
+            background-color: #999;
+            border-radius: 50%;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            margin-left: 8px;
+            cursor: help;
+            transition: background-color 0.2s ease;
+        }
+
+        .info-icon:hover {
+            background-color: #4b5563;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <!-- Header with Intelcom Logo -->
+    <div class="header" role="banner">
+        <div class="logo-container">
+            <div class="intelcom-wordmark">intelcom</div>
+        </div>
+        <div class="header-right">
+            <span class="lang-selector" role="button" tabindex="0" aria-label="Sélecteur de langue">FR</span>
+            <div class="header-separator" aria-hidden="true"></div>
+            <button class="icon-btn" aria-label="Rechercher">🔍</button>
+            <div class="header-separator" aria-hidden="true"></div>
+            <button class="icon-btn" aria-label="Notifications">🔔</button>
+            <div class="header-separator" aria-hidden="true"></div>
+            <button class="icon-btn" aria-label="Menu">☰</button>
+        </div>
+    </div>
+
+    <div class="container" id="main-content">
+        <!-- Compact Tracking Number -->
+        <div class="compact-tracking">
+            <svg class="compact-tracking-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
+            </svg>
+            <span class="compact-tracking-label">N° de suivi:</span>
+            <span class="compact-tracking-value">TESTINSTR202406</span>
+        </div>
+
+        <!-- Brown Shoes Logo -->
+        <div class="brown-shoes-logo">
+            <div class="brown-shoes-logo-icon">B</div>
+            <div class="brown-shoes-logo-text">Brown Shoes</div>
+        </div>
+
+        <!-- Greeting Card - Personalized -->
+        <div class="greeting-card">
+            <h1>Salut <strong>{{PRENOM}}</strong> ! 👋</h1>
+            <p>On a reçu ta commande et on s'en occupe. On planifie ta livraison maintenant.</p>
+        </div>
+
+        <!-- Progress Bar Card -->
+        <div class="card progress-bar-card" style="padding: 14px 16px;">
+            <div class="progress-bar-wrapper">
+                <div class="progress-steps" data-progress="1">
+                    <div class="progress-step active">
+                        <div class="progress-step-label">Planifiée</div>
+                    </div>
+                    <div class="progress-step pending">
+                        <div class="progress-step-label">En route</div>
+                    </div>
+                    <div class="progress-step pending">
+                        <div class="progress-step-label">Arrive bientôt</div>
+                    </div>
+                    <div class="progress-step pending">
+                        <div class="progress-step-label">Livrée</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delivery Time Card -->
+        <div class="card" style="padding: 14px 16px;">
+            <div class="delivery-time">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div class="delivery-info">
+                    <div class="delivery-label">Date de livraison</div>
+                    <div class="delivery-date">17 mars 2024</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Address Location Confirmation Section -->
+        <h2 class="title">Confirmer l'emplacement</h2>
+        
+        <!-- Step 1 Indicator -->
+        <div class="step-indicator" id="step1Indicator" style="margin-bottom: 12px;">
+            <span class="step-number">1</span>
+            <span>Étape 1 sur 2</span>
+        </div>
+
+        <!-- Delivery Address Confirmation Card -->
+        <div class="card">
+            <div class="card-header">
+                <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M10 2C6.48 2 3.5 4.98 3.5 8.5c0 4.78 5.36 9.21 6.5 10.5 1.14-1.29 6.5-5.72 6.5-10.5C16.5 4.98 13.52 2 10 2zm0 11.5c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                </svg>
+                <span class="card-title">Adresse de livraison <span style="font-size: 12px; font-weight: 400; color: #6b7280;">(non modifiable)</span></span>
+                <span class="info-icon" title="Cliquez pour modifier l'adresse via le CEC" aria-label="Information sur l'adresse">i</span>
+            </div>
+            <div class="address-text" style="font-size: 14px; line-height: 1.6; color: #1a1a1a; margin-top: 6px;">
+                123 Main Street. Apt 202<br>
+                Montréal, QC, H2W 3R6
+            </div>
+            
+            <div style="margin-top: 6px; font-size: 12px; color: #6b7280; line-height: 1.5;">
+                Pour changer l'adresse, contacter le <a href="mailto:support@intelcom.ca" class="support-link" target="_blank">support client</a>.
+            </div>
+            
+            <!-- Location Confirmation (Yellow Box) - Moved above map -->
+            <div class="location-confirmation" style="margin-top: 12px; margin-bottom: 12px;">
+                <div class="location-status unconfirmed" id="locationStatus">
+                    <span class="location-status-icon">📍</span>
+                    <span>Vérifiez que l'emplacement correspond à votre adresse. Déplacez l'épingle si nécessaire.</span>
+                </div>
+            </div>
+            
+            <!-- Interactive Map - Realistic Street View -->
+            <div class="map-container">
+                <!-- Realistic streets (white roads with yellow center lines) -->
+                <div class="map-street horizontal" style="top: 25%; left: 0;"></div>
+                <div class="map-street horizontal" style="top: 50%; left: 0;"></div>
+                <div class="map-street horizontal" style="top: 75%; left: 0;"></div>
+                <div class="map-street vertical" style="top: 0; left: 25%;"></div>
+                <div class="map-street vertical" style="top: 0; left: 50%;"></div>
+                <div class="map-street vertical" style="top: 0; left: 75%;"></div>
+                
+                <!-- Yellow center lines on streets -->
+                <div style="position: absolute; top: 25%; left: 0; width: 100%; height: 1px; background: repeating-linear-gradient(90deg, #fbbf24 0%, #fbbf24 8px, transparent 8px, transparent 16px); pointer-events: none;"></div>
+                <div style="position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: repeating-linear-gradient(90deg, #fbbf24 0%, #fbbf24 8px, transparent 8px, transparent 16px); pointer-events: none;"></div>
+                <div style="position: absolute; top: 75%; left: 0; width: 100%; height: 1px; background: repeating-linear-gradient(90deg, #fbbf24 0%, #fbbf24 8px, transparent 8px, transparent 16px); pointer-events: none;"></div>
+                <div style="position: absolute; top: 0; left: 25%; width: 1px; height: 100%; background: repeating-linear-gradient(0deg, #fbbf24 0%, #fbbf24 8px, transparent 8px, transparent 16px); pointer-events: none;"></div>
+                <div style="position: absolute; top: 0; left: 50%; width: 1px; height: 100%; background: repeating-linear-gradient(0deg, #fbbf24 0%, #fbbf24 8px, transparent 8px, transparent 16px); pointer-events: none;"></div>
+                <div style="position: absolute; top: 0; left: 75%; width: 1px; height: 100%; background: repeating-linear-gradient(0deg, #fbbf24 0%, #fbbf24 8px, transparent 8px, transparent 16px); pointer-events: none;"></div>
+                
+                <!-- Street labels -->
+                <div style="position: absolute; top: 3px; left: 3px; font-size: 8px; color: #1f2937; font-weight: 700; pointer-events: none; background: rgba(255,255,255,0.9); padding: 2px 4px; border-radius: 3px; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">Rue Main</div>
+                <div style="position: absolute; top: 3px; left: 50%; transform: translateX(-50%); font-size: 8px; color: #1f2937; font-weight: 700; pointer-events: none; background: rgba(255,255,255,0.9); padding: 2px 4px; border-radius: 3px; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">Rue Oak</div>
+                <div style="position: absolute; bottom: 3px; left: 3px; font-size: 8px; color: #1f2937; font-weight: 700; pointer-events: none; background: rgba(255,255,255,0.9); padding: 2px 4px; border-radius: 3px; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">Av. Maple</div>
+                <div style="position: absolute; top: 50%; right: 3px; transform: translateY(-50%) rotate(90deg); transform-origin: center; font-size: 8px; color: #1f2937; font-weight: 700; pointer-events: none; background: rgba(255,255,255,0.9); padding: 2px 4px; border-radius: 3px; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">Av. Pine</div>
+                
+                <!-- Realistic buildings around the center -->
+                <div class="map-building" style="top: 5%; left: 5%; width: 22px; height: 28px;"></div>
+                <div class="map-building" style="top: 5%; left: 30%; width: 24px; height: 22px;"></div>
+                <div class="map-building" style="top: 5%; right: 10%; width: 20px; height: 30px;"></div>
+                <div class="map-building" style="top: 30%; left: 10%; width: 26px; height: 24px;"></div>
+                <div class="map-building" style="top: 30%; right: 15%; width: 22px; height: 28px;"></div>
+                <div class="map-building" style="bottom: 10%; left: 5%; width: 24px; height: 22px;"></div>
+                <div class="map-building" style="bottom: 10%; left: 35%; width: 20px; height: 30px;"></div>
+                <div class="map-building" style="bottom: 10%; right: 5%; width: 26px; height: 24px;"></div>
+                
+                <!-- Address building - highlighted at center (123 Main St) -->
+                <div class="map-address-building"></div>
+                
+                <!-- Radius circle (100m) - centered and larger -->
+                <div class="map-radius-circle"></div>
+                
+                <!-- Original pin position (red) - fixed at center -->
+                <div class="map-pin-original" aria-label="Position originale de l'adresse">
+                    <div class="map-pin-original-icon"></div>
+                </div>
+                
+                <!-- Draggable pin (green) - can be moved (on top of address building initially) -->
+                <div class="map-pin" id="draggablePin" role="button" tabindex="0" aria-label="Épingle de carte, glissez pour ajuster l'emplacement">
+                    <div class="map-pin-icon"></div>
+                </div>
+            </div>
+
+            <!-- Confirm Location Button - CTA Primary -->
+            <div class="location-confirmation" style="margin-top: 12px;">
+                <button class="cta-primary" id="confirmLocationBtn" aria-label="Confirmer l'emplacement de livraison - Étape 1 sur 2">Confirmer l'emplacement</button>
+            </div>
+
+            <!-- Address Type Selector -->
+            <div class="form-group" style="margin-top: 16px;">
+                <label class="form-label">Type d'adresse</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="addressType" value="residential" checked>
+                        <span>Résidentiel</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="addressType" value="business">
+                        <span>Commercial</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Set Your Preferences Section -->
+        <h2 class="title">Définir vos préférences</h2>
+        
+        <!-- Step 2 Indicator -->
+        <div class="step-indicator" id="step2Indicator" style="opacity: 0.5; margin-bottom: 12px;">
+            <span class="step-number">2</span>
+            <span>Étape 2 sur 2</span>
+        </div>
+
+        <!-- Delivery Instructions Card -->
+        <div class="card">
+            <div class="card-header">
+                <svg class="card-icon" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10z"/>
+                </svg>
+                <span class="card-title">Instructions de livraison</span>
+            </div>
+
+            <!-- Safe Drop Options -->
+            <div class="form-group">
+                <label class="form-label">Emplacement de dépôt sécurisé</label>
+                <select class="form-input" name="safeDrop" aria-label="Sélectionner un emplacement de dépôt sécurisé">
+                    <option value="">Sélectionnez un emplacement</option>
+                    <option value="front">Porte d'entrée</option>
+                    <option value="back">Porte arrière</option>
+                    <option value="side">Entrée latérale</option>
+                    <option value="garage">Garage</option>
+                    <option value="other">Autre</option>
+                </select>
+            </div>
+
+            <!-- Access Code -->
+            <div class="form-group">
+                <label class="form-label">Code d'entrée</label>
+                <input type="text" class="form-input" placeholder="Entrez le code d'entrée" aria-label="Code d'entrée">
+            </div>
+
+            <!-- Buzzer Code -->
+            <div class="form-group">
+                <label class="form-label">Code d'interphone</label>
+                <input type="text" class="form-input" placeholder="Entrez le code d'interphone" aria-label="Code d'interphone">
+            </div>
+
+            <!-- Special Instructions -->
+            <div class="form-group">
+                <label class="form-label">Instructions spéciales</label>
+                <textarea class="form-input" rows="3" placeholder="Ajoutez des instructions de livraison supplémentaires..." aria-label="Instructions spéciales"></textarea>
+            </div>
+
+            <!-- Business Hours (conditional) -->
+            <div class="form-group" id="businessHours" style="display: none;">
+                <label class="form-label">Heures d'ouverture</label>
+                <input type="text" class="form-input" placeholder="ex. : Lun-Ven 9h-17h" aria-label="Heures d'ouverture">
+                <div style="margin-top: 10px;">
+                    <label class="radio-option">
+                        <input type="checkbox" name="weekendClosed">
+                        <span>Fermé le week-end</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Save for Future Toggle - Enhanced WOW Design -->
+            <div class="toggle-group save-for-future">
+                <span class="toggle-label">Enregistrer ces instructions pour les futures livraisons</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" aria-label="Enregistrer les instructions pour les livraisons futures">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Submit Button - CTA Primary -->
+        <button class="cta-primary" id="confirmInstructionsBtn" disabled aria-label="Confirmer les instructions de livraison - Étape 2 sur 2 (désactivé jusqu'à confirmation de l'emplacement)">
+            Confirmer les instructions
+        </button>
+        
+        <!-- Helper Text -->
+        <p id="instructionsHelperText" style="text-align: center; color: #6b7280; font-size: 13px; margin-top: 12px; line-height: 1.5;">
+            <span style="opacity: 0.7;">Veuillez d'abord confirmer l'emplacement ci-dessus pour continuer.</span>
+        </p>
+
+        <!-- Commitments Section -->
+        <div class="commitments-card">
+            <h3>Nos engagements</h3>
+            <div class="commitment-item">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div>
+                    <strong>Livraison durable</strong>
+                    <p>100% de nos véhicules sont électriques dans ta région</p>
+                </div>
+            </div>
+            <div class="commitment-item">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+                <div>
+                    <strong>Sécurité garantie</strong>
+                    <p>Tes données sont protégées et chiffrées</p>
+                </div>
+            </div>
+            <div class="commitment-item">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div>
+                    <strong>Précision</strong>
+                    <p>95% de nos livraisons arrivent dans la fenêtre prévue</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show/hide business hours based on address type
+        document.querySelectorAll('input[name="addressType"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const businessHours = document.getElementById('businessHours');
+                if (this.value === 'business') {
+                    businessHours.style.display = 'block';
+                } else {
+                    businessHours.style.display = 'none';
+                }
+            });
+        });
+
+        // Location confirmation functionality
+        const draggablePin = document.getElementById('draggablePin');
+        const confirmLocationBtn = document.getElementById('confirmLocationBtn');
+        const locationStatus = document.getElementById('locationStatus');
+        let isLocationConfirmed = false;
+        let isDragging = false;
+        let startX, startY, initialX, initialY;
+        
+        // Calculate distance from center (original position)
+        function getDistanceFromCenter(pinX, pinY, containerWidth, containerHeight) {
+            const centerX = containerWidth / 2;
+            const centerY = containerHeight / 2;
+            const pinCenterX = pinX + 16; // Half of pin width (32px)
+            const pinCenterY = pinY + 20; // Half of pin height (40px)
+            const dx = pinCenterX - centerX;
+            const dy = pinCenterY - centerY;
+            return Math.sqrt(dx * dx + dy * dy);
+        }
+        
+        // Check if pin is within 100m radius (72.5px = half of 145px circle diameter)
+        function checkPinDistance(pinX, pinY, containerWidth, containerHeight) {
+            const distance = getDistanceFromCenter(pinX, pinY, containerWidth, containerHeight);
+            const maxRadius = 72.5; // Half of 145px circle diameter
+            
+            if (distance > maxRadius) {
+                locationStatus.className = 'location-status error';
+                locationStatus.innerHTML = '<span class="location-status-icon">⚠️</span><span><strong>Maximum 100 m de rayon.</strong> L\'épingle est trop loin de l\'adresse originale.</span>';
+                return false;
+            } else {
+                locationStatus.className = 'location-status unconfirmed';
+                locationStatus.innerHTML = '<span class="location-status-icon">📍</span><span>Vérifiez que l\'emplacement correspond à votre adresse. Déplacez l\'épingle si nécessaire.</span>';
+                return true;
+            }
+        }
+
+        // Make pin draggable
+        draggablePin.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            const rect = draggablePin.parentElement.getBoundingClientRect();
+            initialX = draggablePin.offsetLeft;
+            initialY = draggablePin.offsetTop;
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            
+            const mapContainer = draggablePin.parentElement;
+            const mapRect = mapContainer.getBoundingClientRect();
+            const deltaX = e.clientX - startX;
+            const deltaY = e.clientY - startY;
+            
+            const maxX = mapRect.width - 40;
+            const maxY = mapRect.height - 50;
+            
+            let newX = initialX + deltaX;
+            let newY = initialY + deltaY;
+            
+            newX = Math.max(0, Math.min(newX, maxX));
+            newY = Math.max(0, Math.min(newY, maxY));
+            
+            // Check distance from center
+            checkPinDistance(newX, newY, mapRect.width, mapRect.height);
+            
+            draggablePin.style.left = newX + 'px';
+            draggablePin.style.top = newY + 'px';
+            draggablePin.style.transform = 'translate(0, -100%)';
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                // Final check of distance
+                const mapContainer = draggablePin.parentElement;
+                const mapRect = mapContainer.getBoundingClientRect();
+                const pinX = parseFloat(draggablePin.style.left) || mapRect.width / 2 - 16;
+                const pinY = parseFloat(draggablePin.style.top) || mapRect.height / 2 - 20;
+                checkPinDistance(pinX, pinY, mapRect.width, mapRect.height);
+            }
+        });
+
+        // Touch events for mobile
+        draggablePin.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            const touch = e.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            const rect = draggablePin.parentElement.getBoundingClientRect();
+            initialX = draggablePin.offsetLeft;
+            initialY = draggablePin.offsetTop;
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            
+            const touch = e.touches[0];
+            const mapContainer = draggablePin.parentElement;
+            const mapRect = mapContainer.getBoundingClientRect();
+            const deltaX = touch.clientX - startX;
+            const deltaY = touch.clientY - startY;
+            
+            const maxX = mapRect.width - 40;
+            const maxY = mapRect.height - 50;
+            
+            let newX = initialX + deltaX;
+            let newY = initialY + deltaY;
+            
+            newX = Math.max(0, Math.min(newX, maxX));
+            newY = Math.max(0, Math.min(newY, maxY));
+            
+            // Check distance from center
+            checkPinDistance(newX, newY, mapRect.width, mapRect.height);
+            
+            draggablePin.style.left = newX + 'px';
+            draggablePin.style.top = newY + 'px';
+            draggablePin.style.transform = 'translate(0, -100%)';
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchend', () => {
+            if (isDragging) {
+                isDragging = false;
+                // Final check of distance
+                const mapContainer = draggablePin.parentElement;
+                const mapRect = mapContainer.getBoundingClientRect();
+                const pinX = parseFloat(draggablePin.style.left) || mapRect.width / 2 - 16;
+                const pinY = parseFloat(draggablePin.style.top) || mapRect.height / 2 - 20;
+                checkPinDistance(pinX, pinY, mapRect.width, mapRect.height);
+            }
+        });
+
+        // Confirm location button - Progressive sequence
+        const confirmInstructionsBtn = document.getElementById('confirmInstructionsBtn');
+        const instructionsHelperText = document.getElementById('instructionsHelperText');
+        const step1Indicator = document.getElementById('step1Indicator');
+        const step2Indicator = document.getElementById('step2Indicator');
+
+        confirmLocationBtn.addEventListener('click', () => {
+            if (!isLocationConfirmed) {
+                isLocationConfirmed = true;
+                
+                // Update location status
+                locationStatus.className = 'location-status confirmed';
+                locationStatus.innerHTML = '<span class="location-status-icon">✅</span><span><strong>Emplacement confirmé!</strong> Vous pouvez maintenant définir vos préférences ci-dessous.</span>';
+                
+                // Update button
+                confirmLocationBtn.textContent = '✓ Emplacement confirmé';
+                confirmLocationBtn.classList.add('confirmed');
+                confirmLocationBtn.setAttribute('aria-label', 'Emplacement confirmé');
+                confirmLocationBtn.disabled = true;
+                
+                // Update step indicator
+                step1Indicator.classList.add('completed');
+                
+                // Enable step 2
+                confirmInstructionsBtn.disabled = false;
+                confirmInstructionsBtn.setAttribute('aria-label', 'Confirmer les instructions de livraison - Étape 2 sur 2');
+                
+                // Update step 2 indicator
+                step2Indicator.style.opacity = '1';
+                step2Indicator.style.color = 'var(--primary)';
+                
+                // Update helper text
+                instructionsHelperText.innerHTML = '<span style="color: var(--success);">✓ Emplacement confirmé. Vous pouvez maintenant définir vos préférences.</span>';
+                
+                // Show feedback message
+                const feedbackMessage = document.createElement('div');
+                feedbackMessage.className = 'feedback-message success';
+                feedbackMessage.setAttribute('role', 'status');
+                feedbackMessage.setAttribute('aria-live', 'polite');
+                feedbackMessage.setAttribute('aria-atomic', 'true');
+                feedbackMessage.innerHTML = '<div class="feedback-icon">✓</div><div class="feedback-content"><strong>Emplacement confirmé !</strong><p>Ton adresse est enregistrée. On peut maintenant planifier ta livraison.</p></div>';
+                confirmLocationBtn.parentElement.insertAdjacentElement('afterend', feedbackMessage);
+                
+                // Smooth scroll to preferences section
+                setTimeout(() => {
+                    document.querySelectorAll('.title')[1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
+                
+                // Announce to screen readers
+                const announcement = document.createElement('div');
+                announcement.setAttribute('role', 'status');
+                announcement.setAttribute('aria-live', 'polite');
+                announcement.setAttribute('aria-atomic', 'true');
+                announcement.style.position = 'absolute';
+                announcement.style.left = '-10000px';
+                announcement.style.width = '1px';
+                announcement.style.height = '1px';
+                announcement.style.overflow = 'hidden';
+                announcement.textContent = 'Emplacement confirmé. Vous pouvez maintenant définir vos préférences de livraison.';
+                document.body.appendChild(announcement);
+                setTimeout(() => document.body.removeChild(announcement), 1000);
+            }
+        });
+
+        // Confirm instructions button
+        confirmInstructionsBtn.addEventListener('click', () => {
+            if (!confirmInstructionsBtn.disabled) {
+                // Show success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'feedback-message success';
+                successMessage.setAttribute('role', 'status');
+                successMessage.setAttribute('aria-live', 'polite');
+                successMessage.setAttribute('aria-atomic', 'true');
+                successMessage.style.cssText = 'position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 10000; max-width: 90%;';
+                successMessage.innerHTML = '<div class="feedback-icon">✓</div><div class="feedback-content"><strong>Préférences enregistrées !</strong><p>Merci ! On s\'occupe de tout maintenant.</p></div>';
+                document.body.appendChild(successMessage);
+                
+                setTimeout(() => {
+                    successMessage.style.transition = 'opacity 0.3s';
+                    successMessage.style.opacity = '0';
+                    setTimeout(() => document.body.removeChild(successMessage), 300);
+                }, 3000);
+                
+                // Announce to screen readers
+                const announcement = document.createElement('div');
+                announcement.setAttribute('role', 'status');
+                announcement.setAttribute('aria-live', 'polite');
+                announcement.setAttribute('aria-atomic', 'true');
+                announcement.style.position = 'absolute';
+                announcement.style.left = '-10000px';
+                announcement.style.width = '1px';
+                announcement.style.height = '1px';
+                announcement.style.overflow = 'hidden';
+                announcement.textContent = 'Préférences de livraison enregistrées avec succès';
+                document.body.appendChild(announcement);
+                setTimeout(() => document.body.removeChild(announcement), 1000);
+            }
+        });
+    </script>
+
+    <!-- Chat Button -->
+    <button class="chat-button" aria-label="Ouvrir le chat">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+        </svg>
+    </button>
+</body>
+</html>
