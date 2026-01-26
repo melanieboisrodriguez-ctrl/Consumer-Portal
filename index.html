@@ -39,6 +39,28 @@
             font-size: 1.2em;
             opacity: 0.95;
         }
+        .disclaimer {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-top: 15px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+        .disclaimer::before {
+            content: '⭐ ';
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        .disclaimer::after {
+            content: ' ⭐';
+            font-size: 1.2em;
+            margin-left: 8px;
+        }
         .content {
             padding: 40px;
         }
@@ -152,7 +174,7 @@
     <div class="container">
         <div class="header">
             <h1>🚀 Consumer Portal - Phase 2 / Prototypes</h1>
-            <p>Concept exploratoire non officiel</p>
+            <p class="disclaimer">Concept exploratoire non officiel</p>
         </div>
 
         <div class="content">
