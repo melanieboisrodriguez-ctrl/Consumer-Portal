@@ -4,6 +4,7 @@ Mockups HTML pour le portail consommateur Phase 2.
 
 ## Fichiers Mockups
 
+- `wireframe-all-statuses.html` - **Wireframes basse fidélité - Tous les statuts** (SCHEDULED, ON THE WAY, ALMOST THERE, DELIVERED)
 - `mockup-scheduled.html` - Statut: Planifié
 - `mockup-on-the-way.html` - Statut: En route
 - `mockup-almost-there.html` - Statut: Presque arrivé
